@@ -10,6 +10,8 @@
 <!-- LOVABLE:END -->
 
 ## Homepage architecture
-- Keep the opening homepage in focused sections in `src/components/dog-homepage.tsx`, composed by the index route; future content pages should use separate TanStack routes.
+- Keep the preserved hero and introduction in `src/components/dog-homepage.tsx` and extended marketing sections in `src/components/dog-sections.tsx`, composed by the index route; this separates the established opening design from later additions.
 - Use global semantic CSS tokens for all visual colors and CSS-only motion with reduced-motion support to keep the illustrated editorial experience cohesive and lightweight.
-- Navigation targets existing homepage sections until additional pages are requested; care previews use accessible client-side tabs and do not imply a working booking flow.
+- Navigation and service links target existing homepage sections until additional pages are requested; marketing content does not imply a working booking flow.
+- The contact form validates locally and offers a client-side text download, explicitly stating that nothing is sent; connect a real delivery service before introducing sent-message success states.
+- Scroll reveals progressively enhance visible SSR content with IntersectionObserver and bypass hidden states for reduced motion, so the page remains readable without animation support.
