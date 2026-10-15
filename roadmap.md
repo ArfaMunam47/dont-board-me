@@ -4,7 +4,7 @@
 - [x] Verify navigation, motion preferences, and desktop/mobile presentation.
 
 # Complete the existing website
-- [ ] Preserve the hero and extend the introduction and two illustrated service compositions.
-- [ ] Add the three-step experience, personal care section, final call to action, and complete footer.
-- [ ] Add an accessible contact form with validation and an honest disconnected-delivery state.
-- [ ] Verify all section links, the contact flow, reduced motion, and desktop/tablet/mobile layouts.
+- [x] Preserve the hero and extend the introduction and two illustrated service compositions.
+- [x] Add the three-step experience, personal care section, final call to action, and complete footer.
+- [x] Add an accessible contact form with validation and an honest disconnected-delivery state.
+- [x] Verify all section links, the contact flow, reduced motion, and desktop/tablet/mobile layouts.
