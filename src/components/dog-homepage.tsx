@@ -62,6 +62,7 @@ const worlds = [
 function DogWorld() {
   const [active, setActive] = useState(0);
   const world = worlds[active] ?? worlds[0];
+  if (!world) return null;
   return <section className="dog-world" id="our-world" aria-labelledby="world-title">
     <div className="section-eyebrow"><span>A WORLD BUILT AROUND THEM</span><span>02 / OUR WORLD</span></div>
     <div className="world-heading"><h2 id="world-title">SMALL ADVENTURES.<br />BIG TAIL WAGS.</h2><Spark className="world-spark" /></div>

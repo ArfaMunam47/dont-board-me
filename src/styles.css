@@ -285,3 +285,20 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 }
 @media (max-width: 370px) { .hero-headline { font-size: 66px; } .headline-right { font-size: 59px; } .hero-dog { width: 410px; height: 410px; left: calc(50% - 205px); top: 150px; } .world-heading h2 { font-size: 43px; } .intro-copy h2 { font-size: 65px; } .world-tab { font-size: 21px; gap: 9px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* Mobile artwork sits below the complete headline, never in front of it. */
+@media (max-width: 700px) {
+  .hero-headline { font-size: 68px; }
+  .headline-right { top: 152px; font-size: 57px; z-index: 4; }
+  .hero-dog { width: 340px; height: 340px; top: 254px; left: calc(50% - 170px); }
+  .hero-circle { top: 270px; width: 285px; height: 300px; left: calc(50% - 142px); }
+  .little-note { top: 109px; font-size: 7px; }
+  .hero-spark { top: 32px; }
+  .hero-caption { top: 591px; }
+  .hero-stage { height: 728px; }
+}
+@media (max-width: 370px) {
+  .hero-headline { font-size: 62px; }
+  .headline-right { font-size: 53px; }
+  .hero-dog { width: 325px; height: 325px; left: calc(50% - 162px); top: 258px; }
+}
