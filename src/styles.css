@@ -496,9 +496,9 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
   .services-head { position: static; margin-bottom: 10px; }
   .services-head-star { right: auto; left: 220px; }
   .service-slide, .service-slide.is-active, .service-slide.is-before, .service-slide.is-after { position: relative; inset: auto; opacity: 1; pointer-events: auto; padding: 44px 0 30px; }
-  .slide-shape, .is-after .slide-shape, .is-before .slide-shape { position: relative; left: 50%; top: auto; translate: -50% 0%; width: min(78vw, 380px); transform: none; opacity: 1; }
+  .slide-shape, .is-after .slide-shape, .is-before .slide-shape { position: relative; left: 50%; top: auto; margin-left: calc(min(78vw, 380px) * -0.5); width: min(78vw, 380px); transform: none; opacity: 1; }
   .slide-path, .is-after .slide-path, .is-before .slide-path { display: none; }
-  .slide-dog, .is-after .slide-dog, .is-before .slide-dog { position: relative; left: 50%; top: auto; translate: -50% 0%; width: min(66vw, 320px); margin-top: calc(min(78vw, 380px) * -0.83); transform: none; opacity: 1; display: block; }
+  .slide-dog, .is-after .slide-dog, .is-before .slide-dog { position: relative; left: 50%; top: auto; margin-left: calc(min(66vw, 320px) * -0.5); width: min(66vw, 320px); margin-top: calc(min(78vw, 380px) * -0.83); transform: none; opacity: 1; display: block; }
   .slide-number, .is-after .slide-number, .is-before .slide-number { position: absolute; right: 0; top: 30px; font-size: 64px; transform: none; opacity: 1; }
   .slide-copy { position: relative; left: 0; bottom: auto; margin-top: 26px; max-width: 100%; }
   .slide-copy h3, .is-after .slide-copy h3, .is-before .slide-copy h3, .slide-copy p, .is-after .slide-copy p, .is-before .slide-copy p, .slide-copy .editorial-link, .is-after .slide-copy .editorial-link, .is-before .slide-copy .editorial-link { transform: none; opacity: 1; }
