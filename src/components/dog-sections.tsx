@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { ArrowUpRight, ArrowUp, PawPrint, Heart, House, Check, Download } from 'lucide-react';
+import { ArrowUpRight, ArrowUp, PawPrint, Heart, Check, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
