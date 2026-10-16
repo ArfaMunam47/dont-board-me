@@ -374,19 +374,36 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 .contact-copy h2 { font-size: 65px; margin-top: 25px; }
 .contact-copy p { max-width: 300px; font-size: 14px; line-height: 1.85; margin: 25px 0; }
 .contact-paw { color: var(--primary); display: inline-block; width: 36px; height: 36px; transform: rotate(-20deg); margin: 20px 15px 0 0; vertical-align: middle; }
-.contact-form { display: grid; gap: 22px; }
+.contact-form { display: grid; gap: 24px; position: relative; background: color-mix(in oklab, var(--background) 55%, white); border: 1px solid color-mix(in oklab, var(--secondary) 65%, white); border-radius: 22px; padding: 34px 32px 32px; box-shadow: 0 1px 0 color-mix(in oklab, var(--secondary) 40%, transparent), 0 18px 40px -22px color-mix(in oklab, var(--primary) 22%, transparent); }
+.contact-form::before { content: ""; position: absolute; inset: 10px; border: 1px dashed color-mix(in oklab, var(--secondary) 80%, var(--primary) 8%); border-radius: 15px; pointer-events: none; }
+.form-intro { position: relative; }
+.form-intro-paw { position: absolute; top: -14px; right: -6px; width: 26px; height: 26px; color: var(--pink-deep); transform: rotate(18deg); transition: transform .35s ease; }
+.contact-form:focus-within .form-intro-paw { transform: rotate(38deg) scale(1.08); }
+.form-intro-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .22em; color: var(--primary); }
+.form-intro-copy { font-size: 13.5px; line-height: 1.6; color: var(--muted-foreground); margin-top: 8px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.form-field label,.care-selector legend { font-size: 12px; display: block; margin-bottom: 10px; font-weight: 600; color: var(--primary); }
-.form-field input,.form-field textarea { border: 1px solid var(--border); border-radius: 4px; box-shadow: none; background: var(--background); font-size: 15px; }
-.form-field input { height: 45px; }
-.form-field textarea { resize: vertical; min-height: 115px; }
+.form-field label,.care-selector legend { font-size: 12px; display: block; margin-bottom: 10px; font-weight: 600; letter-spacing: .04em; color: var(--primary); }
+.form-field input,.form-field textarea { border: 1px solid color-mix(in oklab, var(--secondary) 75%, var(--primary) 10%); border-radius: 12px; box-shadow: inset 0 1px 2px color-mix(in oklab, var(--primary) 4%, transparent); background: color-mix(in oklab, var(--background) 70%, white); font-size: 15px; transition: border-color .25s ease, box-shadow .25s ease, background .25s ease; }
+.form-field input { height: 48px; }
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-field input::placeholder,.form-field textarea::placeholder { color: color-mix(in oklab, var(--muted-foreground) 70%, transparent); }
+.form-field input:focus-visible,.form-field textarea:focus-visible { border-color: var(--pink-deep); box-shadow: 0 0 0 3px color-mix(in oklab, var(--secondary) 55%, transparent); background: white; outline: none; }
 .form-field [aria-invalid=true] { border-color: var(--primary); border-width: 2px; }
 .field-error { font-size: 11px; line-height: 1.5; color: var(--primary); margin-top: 7px; }
-.care-selector { border: 0; padding: 0; display: flex; gap: 20px; flex-wrap: wrap; }
-.care-selector label { display: flex; align-items: center; gap: 7px; font-size: 12px; min-height: 30px; cursor: pointer; }
-.care-selector input { accent-color: var(--primary); width: 16px; height: 16px; }
+.care-selector { border: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; }
+.care-selector legend { margin-bottom: 12px; }
+.care-chip { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; padding: 10px 16px; min-height: 40px; cursor: pointer; border: 1px solid color-mix(in oklab, var(--secondary) 75%, var(--primary) 10%); border-radius: 999px; background: color-mix(in oklab, var(--background) 70%, white); color: var(--foreground); transition: background .25s ease, border-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.care-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.care-chip-paw { width: 13px; height: 13px; color: var(--pink-deep); opacity: 0; transform: scale(.4) rotate(-20deg); transition: opacity .25s ease, transform .25s ease; }
+.care-chip:has(input:checked) { background: var(--secondary); border-color: var(--pink-deep); color: var(--primary); box-shadow: 0 6px 14px -8px color-mix(in oklab, var(--primary) 35%, transparent); }
+.care-chip:has(input:checked) .care-chip-paw { opacity: 1; transform: scale(1) rotate(0deg); }
+.care-chip:has(input:focus-visible) { outline: 2px solid var(--primary); outline-offset: 2px; }
+.care-chip:hover { transform: translateY(-1px); border-color: var(--pink-deep); }
 .delivery-note { font-size: 12px; line-height: 1.7; color: var(--muted-foreground); }
-.contact-form > .club-button { justify-self: start; }
+.contact-form > .club-button { justify-self: start; box-shadow: 0 10px 22px -12px color-mix(in oklab, var(--primary) 55%, transparent); transition: transform .25s ease, box-shadow .25s ease; }
+.contact-form > .club-button:hover { transform: translateY(-2px); box-shadow: 0 16px 28px -12px color-mix(in oklab, var(--primary) 60%, transparent); }
+.contact-form > .club-button:active { transform: translateY(0); box-shadow: 0 6px 14px -10px color-mix(in oklab, var(--primary) 55%, transparent); }
+@media (prefers-reduced-motion: reduce) { .care-chip,.care-chip-paw,.form-intro-paw,.contact-form > .club-button,.form-field input,.form-field textarea { transition: none; } }
 .contact-status { display: flex; align-items: start; gap: 12px; padding: 20px 0; border-top: 1px solid var(--border); outline-color: var(--primary); }
 .contact-status > svg { width: 22px; flex-shrink: 0; color: var(--primary); }
 .contact-status strong { color: var(--primary); font-size: 13px; }
@@ -415,7 +432,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .how-section { padding: 45px 6%; } .how-heading { margin: 30px 0 35px; } .how-heading .editorial-title { font-size: 53px; } .how-heading .handwritten { display: none; } .process-line { display: none; } .process-list { display: flex; flex-direction: column; gap: 30px; } .process-list li:nth-child(n) { padding: 0; } .process-list li .scroll-reveal { display: grid; grid-template-columns: 82px 1fr; column-gap: 20px; } .process-number { font-size: 86px; grid-row: span 2; padding: 0; } .process-list h3 { margin: 3px 0 9px; font-size: 27px; } .process-list p { font-size: 13px; } .process-paw { right: 3px; top: -20px; width: 20px; height: 20px; }
  .personal-care { padding: 45px 6% 20px; } .care-composition { display: flex; flex-direction: column; margin-top: 30px; gap: 25px; } .care-copy .editorial-title { font-size: 55px; } .care-copy p { font-size: 14px; } .care-art { width: 100%; height: 415px; } .care-art img { height: 415px; } .care-note { font-size: 23px; top: 0; right: 0; } .care-star { width: 35px; height: 35px; left: 1%; }
  .final-cta { padding: 35px 6% 45px; } .cta-composition { min-height: 600px; display: block; } .cta-shape { inset: 0 -2%; border-radius: 44% 56% 40% 60% / 14% 20% 80% 86%; } .cta-copy { width: 100%; padding: 45px 5% 0; } .cta-copy .eyebrow { font-size: 8px; } .cta-copy h2 { font-size: 50px; margin-top: 20px; } .cta-copy p { font-size: 13px; max-width: 250px; } .final-button { font-size: 9px; padding: 0 17px; height: 47px; } .cta-dog { width: 95%; top: auto; bottom: 15px; right: 0; transform: rotate(-8deg); } .cta-star { width: 35px; height: 35px; top: auto; bottom: 170px; right: 7%; }
- .contact-section { padding: 20px 6% 45px; } .contact-layout { display: flex; flex-direction: column; gap: 35px; padding-top: 35px; } .contact-copy h2 { font-size: 51px; margin-top: 22px; } .contact-copy p { max-width: 100%; } .contact-paw { margin-top: 0; width: 30px; height: 30px; } .contact-form { width: 100%; gap: 20px; } .form-row { grid-template-columns: 1fr; gap: 20px; } .care-selector { gap: 12px; } .care-selector label { font-size: 11px; min-height: 44px; } .form-field input { height: 48px; } .form-field input,.form-field textarea { font-size: 16px; } .delivery-note { font-size: 12px; }
+ .contact-section { padding: 20px 6% 45px; } .contact-layout { display: flex; flex-direction: column; gap: 35px; padding-top: 35px; } .contact-copy h2 { font-size: 51px; margin-top: 22px; } .contact-copy p { max-width: 100%; } .contact-paw { margin-top: 0; width: 30px; height: 30px; } .contact-form { width: 100%; gap: 20px; padding: 26px 20px; } .form-row { grid-template-columns: 1fr; gap: 20px; } .care-selector { gap: 12px; } .care-selector label { font-size: 11px; min-height: 44px; } .form-field input { height: 48px; } .form-field input,.form-field textarea { font-size: 16px; } .delivery-note { font-size: 12px; }
  .complete-footer { padding: 35px 6% 22px; } .footer-top { grid-template-columns: 1fr 1fr; gap: 28px 15px; } .footer-brand { font-size: 47px; } .footer-note { gap: 10px; align-items: start; } .footer-note svg { width: 25px; height: 25px; flex-shrink: 0; } .footer-note p { font-size: 12px; } .footer-top nav { grid-column: 1 / -1; grid-template-columns: repeat(3,1fr); gap: 15px; } .footer-top nav a { min-height: 30px; font-size: 11px; } .footer-bottom { flex-wrap: wrap; gap: 15px; font-size: 8px; } .footer-bottom > span:nth-child(2) { display: none; }
 }
 @media (max-width: 370px) { .services-title-row .handwritten { font-size: 18px; } .editorial-title { font-size: 52px; } .how-heading .editorial-title { font-size: 47px; } .cta-copy h2 { font-size: 44px; } .contact-copy h2 { font-size: 47px; } .service-editorial-copy h3 { font-size: 50px; } .care-copy .editorial-title { font-size: 49px; } }
