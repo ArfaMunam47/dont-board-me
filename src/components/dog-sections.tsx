@@ -27,23 +27,77 @@ export function Reveal({ children, className = '' }: { children: ReactNode; clas
   return <div ref={ref} className={`scroll-reveal ${className}`}>{children}</div>;
 }
 
+const serviceSlides = [
+  { number: '01', id: 'dog-walks', name: 'DOG WALKS', title: ['BIG WALKS.', 'HAPPY PAWS.'], copy: 'Give your dog time to explore, sniff, stretch their legs, and discover something new.', link: 'EXPLORE DOG WALKS', img: runningDog, width: 1536, height: 1024, alt: 'A joyful dog running with its red leash curling through the air', shape: 'blue', note: 'follow their nose!' },
+  { number: '02', id: 'pet-visits', name: 'PET VISITS', title: ['LITTLE VISITS.', 'LOTS OF LOVE.'], copy: 'Friendly check-ins, attention, and care to help your dog feel comfortable while you’re away.', link: 'EXPLORE PET VISITS', img: restingDog, width: 1536, height: 1024, alt: 'A relaxed white dog stretching out its paws at home', shape: 'pink', note: 'their happy place.' },
+  { number: '03', id: 'both', name: 'A BIT OF BOTH', title: ['THE BEST', 'OF BOTH.'], copy: 'Looking for walks and friendly visits? Let’s find a routine that works for your dog’s day.', link: 'EXPLORE BOTH', img: sittingDog, width: 1024, height: 1024, alt: 'A shaggy white dog with a curious head tilt and a red leash', shape: 'cream', note: 'a bit of everything.' },
+];
+
 export function Services() {
-  return <section className="complete-services" id="our-world" aria-labelledby="services-title">
-    <div className="section-eyebrow"><span>OUR SERVICES</span><span>02 / THE EVERYDAY ADVENTURES</span></div>
-    <Reveal className="services-title-row"><h2 id="services-title" className="editorial-title">GOOD DAYS<br />START HERE.</h2><span className="handwritten">a little adventure,<br />a lot of happy.</span><Doodle className="service-heading-star" /></Reveal>
-    <div className="service-jump"><a href="#dog-walks">01 / DOG WALKS <ArrowDownMark /></a><a href="#pet-visits">02 / PET VISITS <ArrowDownMark /></a></div>
-    <article id="dog-walks" className="service-editorial walk-service">
-      <Reveal className="service-illustration"><div className="service-shape blue-shape" /><svg className="walking-line" viewBox="0 0 600 300" fill="none" aria-hidden="true"><path d="M10 240C50 150 110 310 180 230S280 130 380 190 560 130 585 40" stroke="currentColor" strokeWidth="2" strokeDasharray="5 9" /></svg><img src={runningDog} width={1536} height={1024} loading="lazy" alt="A joyful dog running with its red leash curling through the air" /><PawPrint className="service-paw" aria-hidden="true" /><span className="handwritten service-annotation">follow their nose!</span></Reveal>
-      <Reveal className="service-editorial-copy"><span className="eyebrow">01 / DOG WALKS</span><h3>BIG WALKS.<br />HAPPY PAWS.</h3><p>Give your dog time to explore, sniff, stretch their legs, and enjoy the world beyond the front door.</p><Button asChild variant="link" className="editorial-link"><a href="#contact">EXPLORE DOG WALKS <ArrowUpRight /></a></Button></Reveal>
-    </article>
-    <article id="pet-visits" className="service-editorial visit-service">
-      <Reveal className="service-editorial-copy"><span className="eyebrow">02 / PET VISITS</span><h3>LITTLE VISITS.<br />LOTS OF LOVE.</h3><p>Friendly check-ins, attention, and care to help your dog feel comfortable while you’re away.</p><Button asChild variant="link" className="editorial-link"><a href="#contact">EXPLORE PET VISITS <ArrowUpRight /></a></Button></Reveal>
-      <Reveal className="service-illustration"><div className="service-shape pink-shape" /><img src={restingDog} width={1536} height={1024} loading="lazy" alt="A relaxed white dog stretching out its paws at home" /><House className="home-doodle" aria-hidden="true" /><span className="handwritten service-annotation">their happy place.</span><Doodle className="visit-star" /></Reveal>
-    </article>
+  const sectionRef = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const total = node.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const progress = Math.min(1, Math.max(0, -node.getBoundingClientRect().top / total));
+      setActive((previous) => {
+        const bias = 0.06;
+        const raw = progress * serviceSlides.length;
+        let next = Math.floor(raw + (raw > previous + 1 ? -bias : raw < previous ? bias : 0));
+        next = Math.min(serviceSlides.length - 1, Math.max(0, next));
+        return next === previous ? previous : next;
+      });
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+  const jumpTo = (index: number) => {
+    const node = sectionRef.current;
+    if (!node) return;
+    const total = node.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: node.offsetTop + (total * (index + 0.5)) / serviceSlides.length, behavior: 'smooth' });
+  };
+  return <section className="services-scroller" id="our-world" ref={sectionRef} aria-labelledby="services-title">
+    <div className="services-stage">
+      <div className="services-head">
+        <span className="eyebrow">OUR SERVICES</span>
+        <h2 id="services-title" className="editorial-title">GOOD DAYS<br />START HERE.</h2>
+        <span className="handwritten">little adventures.<br />lots of love.</span>
+        <Doodle className="services-head-star" />
+      </div>
+      <div className="services-slides">
+        {serviceSlides.map((slide, index) => (
+          <article key={slide.number} className={`service-slide ${index === active ? 'is-active' : index < active ? 'is-before' : 'is-after'}`} aria-hidden={index !== active}>
+            <div className={`slide-shape shape-${slide.shape}`} aria-hidden="true" />
+            <svg className="slide-path" viewBox="0 0 600 300" fill="none" aria-hidden="true"><path d="M10 240C50 150 110 310 180 230S280 130 380 190 560 130 585 40" stroke="currentColor" strokeWidth="2" strokeDasharray="5 9" /></svg>
+            <img className="slide-dog" src={slide.img} width={slide.width} height={slide.height} loading="lazy" alt={slide.alt} />
+            <span className="slide-number" aria-hidden="true">{slide.number}</span>
+            <div className="slide-copy">
+              <h3>{slide.title[0]}<br />{slide.title[1]}</h3>
+              <p>{slide.copy}</p>
+              <Button asChild variant="link" className="editorial-link" tabIndex={index === active ? 0 : -1}><a href="#contact" tabIndex={index === active ? 0 : -1}>{slide.link} <ArrowUpRight /></a></Button>
+            </div>
+            <span className="handwritten slide-note">{slide.note}</span>
+            <PawPrint className="slide-paw" aria-hidden="true" />
+          </article>
+        ))}
+      </div>
+      <div className="services-markers" aria-label="Service progress">
+        {serviceSlides.map((slide, index) => (
+          <button key={slide.number} id={slide.id} type="button" className={index === active ? 'marker is-active' : 'marker'} aria-current={index === active ? 'true' : undefined} onClick={() => jumpTo(index)}>{slide.number} / 03 — {slide.name}</button>
+        ))}
+      </div>
+    </div>
   </section>;
 }
-
-function ArrowDownMark() { return <svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v14m-5-5 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>; }
 
 const steps = [
   { number: '01', title: 'SAY HELLO', copy: 'Tell us about your dog, their routine, and the kind of care they need.' },
