@@ -506,4 +506,5 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
   .slide-note, .is-after .slide-note, .is-before .slide-note { position: static; display: inline-block; margin-top: 12px; opacity: 1; transform: rotate(-3deg); }
   .slide-paw { display: none; }
   .services-markers { display: none; }
+  .services-stage .slide-shape, .services-stage .slide-dog { translate: none; }
 }
