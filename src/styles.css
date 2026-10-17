@@ -160,6 +160,7 @@
   --paper: oklch(1 0 0);
   --pink-deep: oklch(0.765 0.105 8);
   --ink-shadow: oklch(0.25 0.008 30 / 12%);
+  --journey-shadow: 0 3px 0 var(--ink-shadow), 0 20px 32px -20px var(--ink-shadow);
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-hand: 'Caveat', cursive;
@@ -507,4 +508,106 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
   .slide-paw { display: none; }
   .services-markers { display: none; }
   .services-stage .slide-shape, .services-stage .slide-dog { translate: none; }
+}
+
+/* Illustrated paper choreography, continuing the reference's pink world. */
+.journey-section { position: relative; background: var(--secondary); color: var(--primary); }
+.journey-stage { position: relative; min-height: 860px; padding: 38px 5% 35px; overflow: hidden; }
+.journey-topline,.care-scene-topline { display: flex; justify-content: space-between; gap: 20px; font-size: 9px; font-weight: 600; position: relative; z-index: 2; }
+.journey-orbit { position: absolute; width: 105%; height: 90%; top: 5%; left: -3%; border-radius: 50%; background: var(--pink-deep); opacity: .24; transform: rotate(-15deg); }
+.journey-heading { position: relative; text-align: center; margin: 80px auto 55px; }
+.journey-heading h2 { font-size: 100px; line-height: 1; font-weight: 800; }
+.journey-heading .handwritten { display: inline-block; font-size: 23px; margin-top: 20px; transform: rotate(-6deg); }
+.journey-star { width: 42px; height: 42px; position: absolute; top: -20px; right: 15%; transform: rotate(12deg); }
+.journey-deck { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto 70px; padding: 0; list-style: none; position: relative; perspective: 1200px; }
+.journey-card { --rest-turn: -5deg; background: var(--background); flex: 0 0 27%; max-width: 330px; margin-right: -2%; padding: 22px 20px 12px; border: 1px solid var(--paper); border-radius: 3px; box-shadow: var(--journey-shadow); transform: rotate(var(--rest-turn)); position: relative; transform-origin: 50% 80%; }
+.journey-card:nth-child(2) { --rest-turn: 3deg; margin-top: 28px; }
+.journey-card:nth-child(3) { --rest-turn: -4deg; margin-top: 61px; }
+.journey-card:nth-child(4) { --rest-turn: 5deg; margin-top: 90px; margin-right: 0; }
+.journey-card-top { display: flex; align-items: center; justify-content: space-between; font-size: 8px; font-weight: 700; gap: 10px; }
+.journey-card-top svg { width: 15px; height: 15px; }
+.journey-card h3 { font-size: 33px; line-height: .95; margin-top: 18px; font-weight: 800; }
+.journey-number { display: block; font: 700 58px/1 var(--font-display); margin: 12px 0; }
+.journey-card p { color: var(--foreground); font-size: 11px; line-height: 1.65; min-height: 73px; padding-top: 12px; border-top: 1px solid var(--border); }
+.journey-art { height: 175px; position: relative; margin: 10px -9px 0; }
+.journey-art-shape { position: absolute; inset: 22% 7% 12%; background: var(--accent); border-radius: 50% 46% 54% 40%; transform: rotate(-12deg); }
+.journey-rose .journey-art-shape { background: var(--secondary); }
+.journey-blue .journey-art-shape { background: var(--accent); }
+.journey-pink .journey-art-shape { background: var(--pink-deep); }
+.journey-art img { width: 100%; height: 100%; object-fit: contain; position: relative; transition: transform .4s ease; }
+.journey-paper .journey-art img { object-fit: contain; width: 85%; margin-left: 8%; }
+.journey-art .handwritten { position: absolute; bottom: 0; right: 14px; font-size: 20px; transform: rotate(-5deg); }
+.journey-card:hover .journey-art img { transform: translateY(-5px) rotate(-2deg); }
+.journey-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 25px; font-size: 9px; font-weight: 600; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+ .journey-section.journey-animated { height: 340vh; }
+ .journey-animated .journey-stage { position: sticky; top: 0; height: 100vh; min-height: 650px; padding-top: 30px; }
+ .journey-animated .journey-heading { position: absolute; left: 0; right: 0; top: 39%; margin: 0; opacity: var(--heading-fade,1); }
+ .journey-animated .journey-deck { position: absolute; left: 5%; top: calc(50% - 240px); width: 90%; margin: 0; }
+ .journey-animated .journey-card { transform: translate3d(0,var(--card-lift,0px),0) rotate(calc(var(--rest-turn) + var(--card-turn,0deg))); will-change: transform; }
+ .journey-animated .journey-bottom { position: absolute; left: 5%; right: 5%; bottom: 30px; }
+}
+.care-scene { position: relative; background: var(--secondary); color: var(--primary); overflow: hidden; padding-top: 35px; }
+.care-scene-topline { padding: 0 5%; }
+.care-scene-title { position: relative; z-index: 2; text-align: center; padding: 130px 12% 150px; }
+.care-scene-title .eyebrow { display: block; margin-bottom: 30px; }
+.care-scene-title h2 { font-size: 112px; line-height: .94; font-weight: 800; position: relative; }
+.care-scene-heart { position: absolute; right: 14%; top: 86px; width: 33px; height: 33px; transform: rotate(18deg); }
+.care-cream { position: absolute; background: var(--background); width: 230px; height: 245px; top: 110px; border-radius: 49% 51% 40% 60%; }
+.care-cream-left { left: -135px; transform: rotate(-20deg); }
+.care-cream-right { right: -125px; top: 45px; transform: rotate(22deg); }
+.care-clouds { height: 170px; position: relative; background: var(--background); }
+.care-clouds i { position: absolute; background: var(--background); width: 30%; height: 260px; border-radius: 50% 50% 0 0; bottom: 0; left: -5%; transform: rotate(-12deg); }
+.care-clouds i:nth-child(2) { left: 16%; height: 165px; transform: rotate(12deg); }
+.care-clouds i:nth-child(3) { left: 37%; height: 310px; transform: rotate(18deg); }
+.care-clouds i:nth-child(4) { left: 62%; height: 210px; transform: rotate(-18deg); }
+.care-clouds i:nth-child(5) { left: 83%; height: 160px; }
+.care-clouds i::after { content: ''; position: absolute; inset: 12px; border: 1px solid var(--paper); border-radius: inherit; }
+.care-scene-details { background: var(--background); position: relative; display: grid; grid-template-columns: 1.1fr 1fr; gap: 10%; padding: 0 10% 70px; align-items: center; }
+.care-scene-dog { position: relative; height: 470px; }
+.care-scene-blue { position: absolute; inset: 10% 0 5%; background: var(--accent); border-radius: 52% 48% 44% 56%; transform: rotate(-9deg); }
+.care-scene-dog img { position: relative; width: 100%; height: 100%; object-fit: contain; }
+.care-scene-dog .handwritten { position: absolute; top: 0; left: 0; transform: rotate(-9deg); }
+.care-scene-star { position: absolute; right: 0; bottom: 8%; width: 40px; height: 40px; }
+.care-scene-copy { position: relative; }
+.care-scene-copy .eyebrow { font-size: 11px; }
+.care-scene-copy p { color: var(--foreground); font-size: 14px; line-height: 1.85; margin-top: 24px; max-width: 365px; }
+.care-scene-copy .text-link { margin-top: 27px; }
+@media (prefers-reduced-motion: no-preference) {
+ .care-scene-entered .care-scene-title h2 { animation: care-heading-arrive .9s cubic-bezier(.22,1,.36,1) both; }
+ .care-scene-entered .care-cream { animation: care-shape-arrive 1.2s cubic-bezier(.22,1,.36,1) both; }
+ .care-scene-entered .care-clouds i { animation: care-cloud-arrive 1.2s cubic-bezier(.22,1,.36,1) both; }
+ .care-scene-entered .care-clouds i:nth-child(3) { animation-delay: .15s; }
+}
+@keyframes care-heading-arrive { from { opacity: .3; translate: 0 45px; } to { opacity: 1; translate: 0 0; } }
+@keyframes care-shape-arrive { from { scale: .65; } to { scale: 1; } }
+@keyframes care-cloud-arrive { from { translate: 0 65px; } to { translate: 0 0; } }
+@media (max-width: 1100px) and (min-width: 901px) {
+ .journey-card { padding: 18px 16px 12px; } .journey-card h3 { font-size: 28px; } .journey-card p { min-height: 89px; } .journey-art { height: 150px; }
+ .care-scene-title h2 { font-size: 96px; }
+}
+@media (max-width: 900px) {
+ .journey-stage { padding: 30px 6% 45px; min-height: 0; }
+ .journey-heading { margin: 55px auto 50px; } .journey-heading h2 { font-size: 68px; }
+ .journey-star { right: 2%; top: -20px; width: 30px; }
+ .journey-deck { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 12px; margin-bottom: 50px; padding: 0 8px; }
+ .journey-card:nth-child(n) { max-width: none; margin: 0; padding: 20px 16px 12px; transform: rotate(-2deg); }
+ .journey-card:nth-child(even) { transform: rotate(3deg); margin-top: 20px; }
+ .journey-card h3 { font-size: 32px; } .journey-card p { min-height: 90px; } .journey-art { height: 170px; }
+ .journey-bottom { font-size: 8px; } .journey-bottom > span { max-width: 250px; line-height: 1.6; }
+ .care-scene-title { padding: 100px 7% 125px; } .care-scene-title h2 { font-size: 75px; } .care-scene-heart { top: 55px; right: 12%; }
+ .care-clouds { height: 120px; } .care-clouds i { height: 180px; } .care-clouds i:nth-child(3) { height: 230px; }
+ .care-scene-details { gap: 6%; padding: 0 6% 55px; } .care-scene-dog { height: 380px; } .care-scene-copy p { font-size: 13px; }
+}
+@media (max-width: 550px) {
+ .journey-heading h2 { font-size: 49px; } .journey-heading .handwritten { font-size: 21px; }
+ .journey-deck { grid-template-columns: minmax(0,1fr); gap: 30px; max-width: 330px; padding: 0 10px; }
+ .journey-card:nth-child(n) { margin: 0; padding: 23px 22px 15px; }
+ .journey-card h3 { font-size: 38px; } .journey-card p { min-height: 0; font-size: 12px; } .journey-number { font-size: 63px; } .journey-art { height: 200px; }
+ .journey-bottom { align-items: flex-start; } .journey-bottom > span { max-width: 145px; }
+ .care-scene-title { padding: 100px 5% 110px; } .care-scene-title h2 { font-size: 53px; } .care-scene-title .eyebrow { font-size: 8px; }
+ .care-cream { width: 130px; height: 145px; } .care-cream-left { left: -105px; top: 140px; } .care-cream-right { right: -75px; top: 50px; }
+ .care-clouds { height: 65px; } .care-clouds i { height: 135px; width: 40%; } .care-clouds i:nth-child(2) { height: 95px; } .care-clouds i:nth-child(3) { height: 160px; } .care-clouds i:nth-child(4) { height: 100px; } .care-clouds i:nth-child(5) { height: 90px; }
+ .care-scene-details { display: flex; flex-direction: column; gap: 35px; padding: 0 8% 50px; } .care-scene-dog { width: 100%; max-width: 360px; height: 365px; }
+ .care-scene-copy p { font-size: 14px; } .care-scene-topline { font-size: 8px; }
 }

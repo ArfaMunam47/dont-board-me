@@ -3,7 +3,8 @@ import { ArrowDown, ArrowUpRight, Menu, X, Heart, PawPrint } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import sittingDog from '@/assets/sitting-dog.png';
 import runningDog from '@/assets/running-dog.png';
-import { Services, HowItWorks, PersonalCare, FinalCallToAction, ContactSection, CompleteFooter, Reveal } from '@/components/dog-sections';
+import { Services, FinalCallToAction, ContactSection, CompleteFooter, Reveal } from '@/components/dog-sections';
+import { HowItWorks, PersonalCare } from '@/components/dog-process-scenes';
 
 function Spark({ className = '' }: { className?: string }) {
   return <svg className={className} viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M30 3 34 23 51 12 39 29 58 33 38 37 47 54 31 41 24 58 23 39 4 46 18 31 2 24 22 23 17 5 30 20Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /></svg>;

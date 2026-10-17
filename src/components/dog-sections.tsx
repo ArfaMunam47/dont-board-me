@@ -99,29 +99,6 @@ export function Services() {
   </section>;
 }
 
-const steps = [
-  { number: '01', title: 'SAY HELLO', copy: 'Tell us about your dog, their routine, and the kind of care they need.' },
-  { number: '02', title: 'FIND YOUR FIT', copy: 'Let’s work out the right walking or visiting routine for your dog.' },
-  { number: '03', title: 'LET THE GOOD DAYS BEGIN', copy: 'Your dog’s next little adventure is ready to begin.' },
-];
-
-export function HowItWorks() {
-  return <section id="how-it-works" className="how-section" aria-labelledby="how-title"><div className="section-inner">
-    <div className="section-eyebrow"><span>HOW IT WORKS</span><span>03 / THREE LITTLE STEPS</span></div>
-    <Reveal className="how-heading"><h2 id="how-title" className="editorial-title">EASY FOR YOU.<br />LOVELY FOR THEM.</h2><span className="handwritten">one hello away<br />from a good day.</span></Reveal>
-    <div className="process-wrap"><svg className="process-line" viewBox="0 0 1100 130" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M70 65C220-35 300 150 450 65S710-20 850 65 1010 120 1070 50" stroke="currentColor" strokeWidth="2" strokeDasharray="5 9" /></svg><ol className="process-list">{steps.map((step) => <li key={step.number}><Reveal><span className="process-number">{step.number}</span><h3>{step.title}</h3><p>{step.copy}</p></Reveal></li>)}</ol><PawPrint className="process-paw" aria-hidden="true" /></div>
-    <a className="text-link" href="#contact">IT ALL STARTS WITH A HELLO <ArrowUpRight /></a>
-  </div></section>;
-}
-
-export function PersonalCare() {
-  return <section className="personal-care" id="care" aria-labelledby="care-title"><div className="section-inner">
-    <div className="section-eyebrow"><span>EVERY PERSONALITY WELCOME</span><span>04 / THE LITTLE THINGS</span></div>
-    <div className="care-composition"><Reveal className="care-copy"><h2 id="care-title" className="editorial-title">SMALL DETAILS.<br />VERY GOOD<br />CARE.</h2><p>The eager explorer. The gentle homebody. The dog who needs a little time to warm up. Every personality is different, and so is every routine.</p><p>Getting to know what makes your dog comfortable is where good care begins. Their favorite paths, familiar comforts, and little quirks all matter.</p><div className="care-signoff"><Heart aria-hidden="true" /><span className="handwritten">their world. their pace.</span></div></Reveal>
-    <Reveal className="care-art"><div className="care-shape" /><img src={sittingDog} width={1024} height={1024} loading="lazy" alt="A gentle shaggy dog looking curiously at its favorite people" /><span className="handwritten care-note">a big personality<br />in a fluffy package.</span><Doodle className="care-star" /></Reveal></div>
-  </div></section>;
-}
-
 export function FinalCallToAction() {
   return <section className="final-cta" aria-labelledby="cta-title"><Reveal className="cta-composition"><div className="cta-shape" /><div className="cta-copy"><span className="eyebrow">GOOD DAYS ARE JUST A HELLO AWAY</span><h2 id="cta-title" className="editorial-title">READY FOR MORE<br />TAIL WAGS?</h2><p>Let’s make your dog’s next day a really good one.</p><Button asChild className="club-button final-button"><a href="#contact">LET’S TALK ABOUT YOUR DOG <ArrowUpRight /></a></Button></div><img src={runningDog} width={1536} height={1024} loading="lazy" alt="A happy dog leaping toward its next adventure" className="cta-dog" /><Doodle className="cta-star" /></Reveal></section>;
 }
