@@ -536,7 +536,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 .journey-pink .journey-art-shape { background: var(--pink-deep); }
 .journey-art img { width: 100%; height: 100%; object-fit: contain; position: relative; transition: transform .4s ease; }
 .journey-paper .journey-art img { object-fit: contain; width: 85%; margin-left: 8%; }
-.journey-art .handwritten { position: absolute; bottom: 0; right: 0; font-size: 20px; transform: rotate(-5deg); }
+.journey-art .handwritten { position: absolute; bottom: 0; right: 14px; font-size: 20px; transform: rotate(-5deg); }
 .journey-card:hover .journey-art img { transform: translateY(-5px) rotate(-2deg); }
 .journey-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 25px; font-size: 9px; font-weight: 600; }
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {

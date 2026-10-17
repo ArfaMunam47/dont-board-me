@@ -10,6 +10,6 @@
 - [x] Verify all section links, the contact flow, reduced motion, and desktop/tablet/mobile layouts.
 
 # Reference-led process and care scenes
-- [ ] Refine the existing How It Works into the reference’s four overlapping, scroll-arriving cards.
-- [ ] Extend the existing personal-care scene with the pink-and-cream organic headline composition.
-- [ ] Verify motion, natural scroll release, mobile/reduced motion, and preserved services/contact.
+- [x] Refine the existing How It Works into the reference’s four overlapping, scroll-arriving cards.
+- [x] Extend the existing personal-care scene with the pink-and-cream organic headline composition.
+- [x] Verify motion, natural scroll release, mobile/reduced motion, and preserved services/contact.
