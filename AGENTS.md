@@ -15,3 +15,4 @@
 - Navigation and service links target existing homepage sections until additional pages are requested; marketing content does not imply a working booking flow.
 - The contact form validates locally and offers a client-side text download, explicitly stating that nothing is sent; connect a real delivery service before introducing sent-message success states.
 - Scroll reveals progressively enhance visible SSR content with IntersectionObserver and bypass hidden states for reduced motion, so the page remains readable without animation support.
+- Keep the process and following care scenes in `src/components/dog-process-scenes.tsx`; isolate their scroll choreography from preserved services/contact, using requestAnimationFrame CSS-property updates instead of per-scroll React state.
