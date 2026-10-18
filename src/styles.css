@@ -453,7 +453,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 }
 
 /* Scroll-driven services experience */
-.services-scroller { position: relative; height: 380vh; background: var(--secondary); }
+.services-scroller { position: relative; height: 380vh; background: color-mix(in oklab, var(--pink-deep) 20%, var(--secondary)); }
 .services-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .services-head { position: absolute; top: 84px; left: 6%; z-index: 4; }
 .services-head .editorial-title { font-size: clamp(38px, 4.6vw, 62px); margin-top: 14px; }
@@ -589,6 +589,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .care-scene-title h2 { font-size: 96px; }
 }
 @media (max-width: 900px) {
+ .journey-wave,.care-wave { height: 42px; }
  .journey-stage { padding: 30px 6% 45px; min-height: 0; }
  .journey-heading { margin: 55px auto 50px; } .journey-heading h2 { font-size: 68px; }
  .journey-star { right: 2%; top: -20px; width: 30px; }
