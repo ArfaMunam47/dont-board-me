@@ -51,6 +51,7 @@ export function HowItWorks() {
   }, []);
 
   return <section id="how-it-works" className="journey-section" ref={sectionRef} aria-labelledby="journey-title">
+    <svg className="journey-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg>
     <div className="journey-stage">
       <div className="journey-orbit" aria-hidden="true" />
       <div className="journey-topline"><span>GOOD DAYS, STEP BY STEP</span><span>03 / HOW IT WORKS</span></div>
@@ -78,6 +79,7 @@ export function PersonalCare() {
     return () => observer.disconnect();
   }, []);
   return <section id="care" className="care-scene" ref={sectionRef} aria-labelledby="care-scene-title">
+    <svg className="care-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg>
     <div className="care-scene-topline"><span>EVERY PERSONALITY WELCOME</span><span>04 / CARE, THEIR WAY</span></div>
     <div className="care-cream care-cream-left" aria-hidden="true" /><div className="care-cream care-cream-right" aria-hidden="true" />
     <div className="care-scene-title"><span className="eyebrow">THE LITTLE THINGS. THE BIG LOVE.</span><h2 id="care-scene-title">THE CARE YOUR<br />PET DESERVES!</h2><Heart className="care-scene-heart" aria-hidden="true" /></div>
