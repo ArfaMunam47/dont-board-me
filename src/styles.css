@@ -453,7 +453,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 }
 
 /* Scroll-driven services experience */
-.services-scroller { position: relative; height: 380vh; background: var(--secondary); }
+.services-scroller { position: relative; height: 380vh; background: color-mix(in oklab, var(--pink-deep) 20%, var(--secondary)); }
 .services-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .services-head { position: absolute; top: 84px; left: 6%; z-index: 4; }
 .services-head .editorial-title { font-size: clamp(38px, 4.6vw, 62px); margin-top: 14px; }
@@ -510,17 +510,18 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
   .services-stage .slide-shape, .services-stage .slide-dog { translate: none; }
 }
 
-/* Illustrated paper choreography, continuing the reference's pink world. */
-.journey-section { position: relative; background: var(--secondary); color: var(--primary); }
+/* Illustrated paper choreography: a calm cream scene between the pink services stage and the deeper-pink care scene. */
+.journey-section { position: relative; background: var(--background); color: var(--primary); }
+.journey-wave { display: block; width: 100%; height: 70px; color: var(--secondary); margin-bottom: -1px; transform: scaleY(-1); }
 .journey-stage { position: relative; min-height: 860px; padding: 38px 5% 35px; overflow: hidden; }
 .journey-topline,.care-scene-topline { display: flex; justify-content: space-between; gap: 20px; font-size: 9px; font-weight: 600; position: relative; z-index: 2; }
-.journey-orbit { position: absolute; width: 105%; height: 90%; top: 5%; left: -3%; border-radius: 50%; background: var(--pink-deep); opacity: .24; transform: rotate(-15deg); }
+.journey-orbit { position: absolute; width: 105%; height: 90%; top: 5%; left: -3%; border-radius: 50%; background: var(--accent); opacity: .3; transform: rotate(-15deg); }
 .journey-heading { position: relative; text-align: center; margin: 80px auto 55px; }
 .journey-heading h2 { font-size: 100px; line-height: 1; font-weight: 800; }
 .journey-heading .handwritten { display: inline-block; font-size: 23px; margin-top: 20px; transform: rotate(-6deg); }
 .journey-star { width: 42px; height: 42px; position: absolute; top: -20px; right: 15%; transform: rotate(12deg); }
 .journey-deck { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto 70px; padding: 0; list-style: none; position: relative; perspective: 1200px; }
-.journey-card { --rest-turn: -5deg; background: var(--background); flex: 0 0 27%; max-width: 330px; margin-right: -2%; padding: 22px 20px 12px; border: 1px solid var(--paper); border-radius: 3px; box-shadow: var(--journey-shadow); transform: rotate(var(--rest-turn)); position: relative; transform-origin: 50% 80%; }
+.journey-card { --rest-turn: -5deg; background: var(--paper); flex: 0 0 27%; max-width: 330px; margin-right: -2%; padding: 22px 20px 12px; border: 1px solid var(--paper); border-radius: 3px; box-shadow: var(--journey-shadow); transform: rotate(var(--rest-turn)); position: relative; transform-origin: 50% 80%; }
 .journey-card:nth-child(2) { --rest-turn: 3deg; margin-top: 28px; }
 .journey-card:nth-child(3) { --rest-turn: -4deg; margin-top: 61px; }
 .journey-card:nth-child(4) { --rest-turn: 5deg; margin-top: 90px; margin-right: 0; }
@@ -547,7 +548,8 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .journey-animated .journey-card { transform: translate3d(0,var(--card-lift,0px),0) rotate(calc(var(--rest-turn) + var(--card-turn,0deg))); will-change: transform; }
  .journey-animated .journey-bottom { position: absolute; left: 5%; right: 5%; bottom: 30px; }
 }
-.care-scene { position: relative; background: var(--secondary); color: var(--primary); overflow: hidden; padding-top: 35px; }
+.care-scene { position: relative; background: color-mix(in oklab, var(--pink-deep) 52%, var(--secondary)); color: var(--primary); overflow: hidden; }
+.care-wave { display: block; width: 100%; height: 70px; color: var(--background); margin-bottom: -1px; transform: scaleY(-1); }
 .care-scene-topline { padding: 0 5%; }
 .care-scene-title { position: relative; z-index: 2; text-align: center; padding: 130px 12% 150px; }
 .care-scene-title .eyebrow { display: block; margin-bottom: 30px; }
@@ -587,6 +589,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .care-scene-title h2 { font-size: 96px; }
 }
 @media (max-width: 900px) {
+ .journey-wave,.care-wave { height: 42px; }
  .journey-stage { padding: 30px 6% 45px; min-height: 0; }
  .journey-heading { margin: 55px auto 50px; } .journey-heading h2 { font-size: 68px; }
  .journey-star { right: 2%; top: -20px; width: 30px; }
