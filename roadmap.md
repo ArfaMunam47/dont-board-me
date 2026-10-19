@@ -13,3 +13,8 @@
 - [x] Refine the existing How It Works into the reference’s four overlapping, scroll-arriving cards.
 - [x] Extend the existing personal-care scene with the pink-and-cream organic headline composition.
 - [x] Verify motion, natural scroll release, mobile/reduced motion, and preserved services/contact.
+
+# Final art-direction pass
+- [x] Give each major section a distinct scene: cream How It Works, deeper-pink care page, wave transitions.
+- [x] Give each service slide a distinct visual state (shape, scale, position, entrance direction).
+- [x] Verify full-page scroll, mobile, reduced motion, and no regressions.
