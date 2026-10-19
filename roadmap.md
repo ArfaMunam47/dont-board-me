@@ -16,5 +16,5 @@
 
 # Final art-direction pass
 - [x] Give each major section a distinct scene: cream How It Works, deeper-pink care page, wave transitions.
-- [ ] Give each service slide a distinct visual state (shape, scale, position, entrance direction).
-- [ ] Verify full-page scroll, mobile, reduced motion, and no regressions.
+- [x] Give each service slide a distinct visual state (shape, scale, position, entrance direction).
+- [x] Verify full-page scroll, mobile, reduced motion, and no regressions.
