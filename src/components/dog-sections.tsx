@@ -36,12 +36,16 @@ const serviceSlides = [
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
+  const [enhanced, setEnhanced] = useState(false);
   useEffect(() => {
     const node = sectionRef.current;
     if (!node) return;
+    const media = window.matchMedia('(min-width: 901px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)');
     let raf = 0;
     const update = () => {
       raf = 0;
+      setEnhanced(media.matches);
+      if (!media.matches) return;
       const total = node.offsetHeight - window.innerHeight;
       if (total <= 0) return;
       const progress = Math.min(1, Math.max(0, -node.getBoundingClientRect().top / total));
@@ -54,18 +58,32 @@ export function Services() {
       });
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const followFragment = () => {
+      const index = serviceSlides.findIndex(slide => `#${slide.id}` === window.location.hash);
+      if (index < 0 || !media.matches) return;
+      node.classList.add('services-enhanced');
+      setEnhanced(true);
+      const distance = node.offsetHeight - window.innerHeight;
+      const top = window.scrollY + node.getBoundingClientRect().top;
+      window.scrollTo({ top: top + distance * (index + 0.5) / serviceSlides.length, behavior: 'instant' });
+      setActive(index);
+    };
     update();
+    followFragment();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
+    window.addEventListener('hashchange', followFragment);
+    window.addEventListener('service-navigation', followFragment);
+    media.addEventListener('change', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); window.removeEventListener('hashchange', followFragment); window.removeEventListener('service-navigation', followFragment); media.removeEventListener('change', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
   const jumpTo = (index: number) => {
     const node = sectionRef.current;
     if (!node) return;
     const total = node.offsetHeight - window.innerHeight;
-    window.scrollTo({ top: node.offsetTop + (total * (index + 0.5)) / serviceSlides.length, behavior: 'smooth' });
+    window.scrollTo({ top: window.scrollY + node.getBoundingClientRect().top + (total * (index + 0.5)) / serviceSlides.length, behavior: 'smooth' });
   };
-  return <section className="services-scroller" id="our-world" ref={sectionRef} aria-labelledby="services-title">
+  return <section className={`services-scroller${enhanced ? ' services-enhanced' : ''}`} id="our-world" ref={sectionRef} aria-labelledby="services-title">
     <div className="services-stage">
       <div className="services-head">
         <span className="eyebrow">OUR SERVICES</span>
@@ -75,7 +93,7 @@ export function Services() {
       </div>
       <div className="services-slides">
         {serviceSlides.map((slide, index) => (
-          <article key={slide.number} className={`service-slide ${index === active ? 'is-active' : index < active ? 'is-before' : 'is-after'}`} aria-hidden={index !== active}>
+          <article key={slide.number} id={slide.id} className={`service-slide ${index === active ? 'is-active' : index < active ? 'is-before' : 'is-after'}`} aria-hidden={enhanced && index !== active} inert={enhanced && index !== active}>
             <div className={`slide-shape shape-${slide.shape}`} aria-hidden="true" />
             <svg className="slide-path" viewBox="0 0 600 300" fill="none" aria-hidden="true"><path d="M10 240C50 150 110 310 180 230S280 130 380 190 560 130 585 40" stroke="currentColor" strokeWidth="2" strokeDasharray="5 9" /></svg>
             <img className="slide-dog" src={slide.img} width={slide.width} height={slide.height} loading="lazy" alt={slide.alt} />
@@ -83,7 +101,7 @@ export function Services() {
             <div className="slide-copy">
               <h3>{slide.title[0]}<br />{slide.title[1]}</h3>
               <p>{slide.copy}</p>
-              <Button asChild variant="link" className="editorial-link" tabIndex={index === active ? 0 : -1}><a href="#contact" tabIndex={index === active ? 0 : -1}>{slide.link} <ArrowUpRight /></a></Button>
+              <Button asChild variant="link" className="editorial-link"><a href="#contact">{slide.link} <ArrowUpRight /></a></Button>
             </div>
             <span className="handwritten slide-note">{slide.note}</span>
             <PawPrint className="slide-paw" aria-hidden="true" />
@@ -92,7 +110,7 @@ export function Services() {
       </div>
       <div className="services-markers" aria-label="Service progress">
         {serviceSlides.map((slide, index) => (
-          <button key={slide.number} id={slide.id} type="button" className={index === active ? 'marker is-active' : 'marker'} aria-current={index === active ? 'true' : undefined} onClick={() => jumpTo(index)}>{slide.number} / 03 — {slide.name}</button>
+          <Button key={slide.number} variant="ghost" type="button" className={index === active ? 'marker is-active' : 'marker'} aria-current={index === active ? 'true' : undefined} aria-controls={slide.id} onClick={() => jumpTo(index)}>{slide.number} / 03 — {slide.name}</Button>
         ))}
       </div>
     </div>
@@ -146,5 +164,10 @@ export function ContactSection() {
 }
 
 export function CompleteFooter() {
-  return <footer className="complete-footer"><div className="section-inner"><div className="footer-top"><a href="#home" className="footer-brand">DON’T<br />BOARD ME.</a><div className="footer-note"><Doodle /><p>Good days for<br />very good dogs.</p></div><nav aria-label="Footer navigation"><a href="#about">About us</a><a href="#dog-walks">Dog walks</a><a href="#pet-visits">Pet visits</a><a href="#how-it-works">How it works</a><a href="#contact">Say hello <ArrowUpRight /></a></nav></div><div className="footer-bottom"><span>© 2026 Don’t Board Me.</span><span>A LITTLE MUDDY. A WHOLE LOT OF LOVE.</span><a href="#home">BACK TO TOP <ArrowUp /></a></div></div></footer>;
+  const followService = (id: string) => {
+    window.history.pushState(null, '', `#${id}`);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    window.dispatchEvent(new Event('service-navigation'));
+  };
+  return <footer className="complete-footer"><div className="section-inner"><div className="footer-top"><a href="#home" className="footer-brand">DON’T<br />BOARD ME.</a><div className="footer-note"><Doodle /><p>Good days for<br />very good dogs.</p></div><nav aria-label="Footer navigation"><a href="#about">About us</a><a href="#dog-walks" onClick={event => { event.preventDefault(); followService('dog-walks'); }}>Dog walks</a><a href="#pet-visits" onClick={event => { event.preventDefault(); followService('pet-visits'); }}>Pet visits</a><a href="#how-it-works">How it works</a><a href="#contact">Say hello <ArrowUpRight /></a></nav></div><div className="footer-bottom"><span>© 2026 Don’t Board Me.</span><span>A LITTLE MUDDY. A WHOLE LOT OF LOVE.</span><a href="#home">BACK TO TOP <ArrowUp /></a></div></div></footer>;
 }

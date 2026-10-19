@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Menu, X, Heart, PawPrint } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import sittingDog from '@/assets/sitting-dog.png';
@@ -16,7 +16,8 @@ function Wordmark() {
 
 function Navigation() {
   const [open, setOpen] = useState(false);
-  return <header className="site-header">
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  return <header className="site-header" id="home" onKeyDown={event => { if (event.key === 'Escape' && open) { setOpen(false); toggleRef.current?.focus(); } }}>
     <a href="#home" className="brand" aria-label="Don't Board Me home"><Wordmark /></a>
     <nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Main navigation" id="main-navigation">
       <a href="#about" onClick={() => setOpen(false)}>ABOUT US</a>
@@ -24,13 +25,12 @@ function Navigation() {
       <a href="#contact" onClick={() => setOpen(false)}>SAY HELLO</a>
     </nav>
     <Button asChild className="club-button header-cta"><a href="#contact">SAY HELLO <ArrowUpRight /></a></Button>
-    <Button className="mobile-menu" variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="main-navigation" onKeyDown={(event) => { if (event.key === 'Escape') setOpen(false); }} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
+    <Button ref={toggleRef} className="mobile-menu" variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
   </header>;
 }
 
 function HeroSection() {
-  return <section className="hero" id="home" aria-labelledby="hero-title">
-    <Navigation />
+  return <section className="hero" aria-labelledby="hero-title">
     <div className="hero-stage">
       <div className="hero-circle" aria-hidden="true" />
       <h1 id="hero-title" className="hero-headline"><span className="headline-left">A TIRED<br />DOG IS</span><span className="headline-right">A HAPPY<br />DOG!</span></h1>
@@ -57,5 +57,5 @@ function BrandIntroduction() {
 }
 
 export function DogHomepage() {
-  return <main><HeroSection /><BrandIntroduction /><Services /><HowItWorks /><PersonalCare /><FinalCallToAction /><ContactSection /><CompleteFooter /></main>;
+  return <><a href="#main-content" className="skip-link">Skip to content</a><Navigation /><main id="main-content" tabIndex={-1}><HeroSection /><BrandIntroduction /><Services /><HowItWorks /><PersonalCare /><FinalCallToAction /><ContactSection /></main><CompleteFooter /></>;
 }

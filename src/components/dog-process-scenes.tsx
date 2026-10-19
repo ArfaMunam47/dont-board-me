@@ -22,7 +22,7 @@ export function HowItWorks() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-    const media = window.matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)');
+    const media = window.matchMedia('(min-width: 901px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)');
     const cards = Array.from(section.querySelectorAll<HTMLElement>('.journey-card'));
     let frame = 0;
     const update = () => {
