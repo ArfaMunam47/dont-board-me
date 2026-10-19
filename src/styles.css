@@ -485,6 +485,29 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 .is-after .slide-note, .is-before .slide-note { opacity: 0; transform: rotate(-6deg) translateY(20px); transition-delay: 0s; }
 .slide-paw { position: absolute; left: 40%; top: 20%; width: 30px; height: 30px; color: var(--primary); opacity: .55; transform: rotate(-14deg); transition: opacity .5s ease .3s, transform .7s ease .3s; }
 .is-after .slide-paw, .is-before .slide-paw { opacity: 0; transform: rotate(30deg) scale(.5); transition-delay: 0s; }
+@media (min-width: 901px) {
+  /* Slide 1 — Dog Walks: energetic, the dog strides in from the side and the headline sweeps horizontally. */
+  .service-slide:nth-child(1) .slide-shape { left: 60%; top: 50%; width: min(60vh, 580px); }
+  .service-slide:nth-child(1).is-after .slide-dog { transform: translateX(34vw) rotate(4deg) scale(.8); }
+  .service-slide:nth-child(1).is-before .slide-dog { transform: translateX(-34vw) rotate(-4deg) scale(.8); }
+  .service-slide:nth-child(1).is-after .slide-copy h3 { transform: translateX(-64px); }
+  .service-slide:nth-child(1).is-before .slide-copy h3 { transform: translateX(64px); }
+  /* Slide 2 — Pet Visits: calmer and softer, a larger rounder shape with everything settling vertically. */
+  .service-slide:nth-child(2) .slide-shape { left: 62%; top: 56%; width: min(66vh, 640px); border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%; }
+  .service-slide:nth-child(2) .slide-dog { width: min(46vh, 440px); left: 62%; top: 55%; }
+  .service-slide:nth-child(2).is-after .slide-shape { transform: translateY(10vh) scale(.7); }
+  .service-slide:nth-child(2).is-before .slide-shape { transform: translateY(-10vh) scale(.7); }
+  .service-slide:nth-child(2).is-after .slide-dog { transform: translateY(14vh) scale(.9); }
+  .service-slide:nth-child(2).is-before .slide-dog { transform: translateY(-14vh) scale(.9); }
+  .service-slide:nth-child(2) .slide-note { right: 8%; bottom: 30%; }
+  /* Slide 3 — A Bit of Both: a balanced finale, the cream shape grows from the center with a blue path. */
+  .service-slide:nth-child(3) .slide-shape { width: min(70vh, 680px); border-radius: 50% 50% 46% 54% / 52% 48% 52% 48%; }
+  .service-slide:nth-child(3) .slide-path { color: var(--accent); opacity: .85; }
+  .service-slide:nth-child(3).is-after .slide-shape { transform: scale(.4); }
+  .service-slide:nth-child(3).is-before .slide-shape { transform: scale(1.35); }
+  .service-slide:nth-child(3).is-after .slide-dog { transform: scale(.6); }
+  .service-slide:nth-child(3).is-before .slide-dog { transform: scale(1.15); }
+}
 .services-markers { position: absolute; bottom: 30px; left: 6%; display: flex; gap: 26px; z-index: 5; }
 .marker { font-size: 11px; letter-spacing: .18em; font-weight: 600; color: color-mix(in oklab, var(--primary) 55%, transparent); background: none; border: 0; border-bottom: 2px solid transparent; padding: 6px 0; cursor: pointer; transition: color .3s ease, border-color .3s ease; scroll-margin-top: 40vh; }
 .marker.is-active { color: var(--primary); border-color: var(--primary); }
