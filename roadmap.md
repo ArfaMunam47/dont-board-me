@@ -23,3 +23,9 @@
 - [x] Repair service destinations and keyboard access in every layout, with a readable non-animated fallback.
 - [x] Polish short-screen layouts, navigation dismissal, landmarks, and tablet form spacing without changing the established artwork.
 - [x] Verify the full page, service navigation, enquiry validation/download, reduced motion, and desktop/tablet/narrow-phone layouts.
+
+# Match the reattached reference
+- [ ] Restore the pink four-card process scene and visible staggered scroll choreography.
+- [ ] Recompose the following care scene in cream and blue and add an honest customer-stories scene.
+- [ ] Preserve all services, add coordinated small-screen entrances, and make the questions CTA blue.
+- [ ] Verify real scrolling, scene transitions, contact, reduced motion, and small screens.
