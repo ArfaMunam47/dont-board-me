@@ -20,6 +20,6 @@
 - [x] Verify full-page scroll, mobile, reduced motion, and no regressions.
 
 # Website completion and quality review
-- [ ] Repair service destinations and keyboard access in every layout, with a readable non-animated fallback.
-- [ ] Polish short-screen layouts, navigation dismissal, landmarks, and tablet form spacing without changing the established artwork.
-- [ ] Verify the full page, service navigation, enquiry validation/download, reduced motion, and desktop/tablet/narrow-phone layouts.
+- [x] Repair service destinations and keyboard access in every layout, with a readable non-animated fallback.
+- [x] Polish short-screen layouts, navigation dismissal, landmarks, and tablet form spacing without changing the established artwork.
+- [x] Verify the full page, service navigation, enquiry validation/download, reduced motion, and desktop/tablet/narrow-phone layouts.
