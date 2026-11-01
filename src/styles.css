@@ -550,8 +550,8 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 }
 
 /* Illustrated paper choreography: a calm cream scene between the pink services stage and the deeper-pink care scene. */
-.journey-section { position: relative; background: var(--background); color: var(--primary); }
-.journey-wave { display: block; width: 100%; height: 70px; color: var(--secondary); margin-bottom: -1px; transform: scaleY(-1); }
+.journey-section { position: relative; background: color-mix(in oklab, var(--pink-deep) 30%, var(--secondary)); color: var(--primary); }
+.journey-wave { display: block; width: 100%; height: 70px; color: color-mix(in oklab, var(--pink-deep) 20%, var(--secondary)); margin-bottom: -1px; transform: scaleY(-1); }
 .journey-stage { position: relative; min-height: 860px; padding: 38px 5% 35px; overflow: hidden; }
 .journey-topline,.care-scene-topline { display: flex; justify-content: space-between; gap: 20px; font-size: 9px; font-weight: 600; position: relative; z-index: 2; }
 .journey-orbit { position: absolute; width: 105%; height: 90%; top: 5%; left: -3%; border-radius: 50%; background: var(--accent); opacity: .3; transform: rotate(-15deg); }
@@ -587,18 +587,18 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .journey-animated .journey-card { transform: translate3d(0,var(--card-lift,0px),0) rotate(calc(var(--rest-turn) + var(--card-turn,0deg))); will-change: transform; }
  .journey-animated .journey-bottom { position: absolute; left: 5%; right: 5%; bottom: 30px; }
 }
-.care-scene { position: relative; background: color-mix(in oklab, var(--pink-deep) 52%, var(--secondary)); color: var(--primary); overflow: hidden; }
-.care-wave { display: block; width: 100%; height: 70px; color: var(--background); margin-bottom: -1px; transform: scaleY(-1); }
+ .care-scene { position: relative; background: var(--background); color: var(--primary); overflow: hidden; }
+.care-wave { display: block; width: 100%; height: 70px; color: color-mix(in oklab, var(--pink-deep) 30%, var(--secondary)); margin-bottom: -1px; transform: scaleY(-1); }
 .care-scene-topline { padding: 0 5%; }
 .care-scene-title { position: relative; z-index: 2; text-align: center; padding: 130px 12% 150px; }
 .care-scene-title .eyebrow { display: block; margin-bottom: 30px; }
 .care-scene-title h2 { font-size: 112px; line-height: .94; font-weight: 800; position: relative; }
 .care-scene-heart { position: absolute; right: 14%; top: 86px; width: 33px; height: 33px; transform: rotate(18deg); }
-.care-cream { position: absolute; background: var(--background); width: 230px; height: 245px; top: 110px; border-radius: 49% 51% 40% 60%; }
-.care-cream-left { left: -135px; transform: rotate(-20deg); }
-.care-cream-right { right: -125px; top: 45px; transform: rotate(22deg); }
-.care-clouds { height: 170px; position: relative; background: var(--background); }
-.care-clouds i { position: absolute; background: var(--background); width: 30%; height: 260px; border-radius: 50% 50% 0 0; bottom: 0; left: -5%; transform: rotate(-12deg); }
+.care-blob { position: absolute; background: var(--accent); width: 230px; height: 245px; top: 110px; border-radius: 49% 51% 40% 60%; }
+.care-blob-left { left: -135px; transform: rotate(-20deg); }
+.care-blob-right { right: -125px; top: 45px; transform: rotate(22deg); }
+.care-clouds { height: 170px; position: relative; }
+.care-clouds i { position: absolute; background: var(--accent); width: 30%; height: 260px; border-radius: 50% 50% 0 0; bottom: 0; left: -5%; transform: rotate(-12deg); }
 .care-clouds i:nth-child(2) { left: 16%; height: 165px; transform: rotate(12deg); }
 .care-clouds i:nth-child(3) { left: 37%; height: 310px; transform: rotate(18deg); }
 .care-clouds i:nth-child(4) { left: 62%; height: 210px; transform: rotate(-18deg); }
