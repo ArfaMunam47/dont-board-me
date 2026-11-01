@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import sittingDog from '@/assets/sitting-dog.png';
 import runningDog from '@/assets/running-dog.png';
 import restingDog from '@/assets/resting-dog.png';
+import { useSceneEntrances } from '@/hooks/use-scene-entrances';
 
 const processCards = [
   { number: '01', label: 'SAY HELLO', title: <>FIRST, WE GET<br />TO KNOW YOU.</>, copy: 'Tell us about your dog, their personality, their routine, and the little things that make them special.', image: sittingDog, alt: 'A curious shaggy dog ready to say hello', tone: 'paper', note: 'hello, you.' },
@@ -19,6 +20,7 @@ function Star({ className }: { className: string }) {
 /** Motion only enhances the complete, readable SSR layout. */
 export function HowItWorks() {
   const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.journey-card');
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
