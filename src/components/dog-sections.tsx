@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import runningDog from '@/assets/running-dog.png';
 import sittingDog from '@/assets/sitting-dog.png';
 import restingDog from '@/assets/resting-dog.png';
+import { useSceneEntrances } from '@/hooks/use-scene-entrances';
 
 export function Doodle({ className = '' }: { className?: string }) {
   return <svg className={className} viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="m30 3 4 20 17-11-12 17 19 4-20 4 9 17-16-13-7 17-1-19-19 7 14-15-16-7 20-1-5-18 13 15Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /></svg>;
