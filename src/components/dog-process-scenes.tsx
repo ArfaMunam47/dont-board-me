@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import sittingDog from '@/assets/sitting-dog.png';
 import runningDog from '@/assets/running-dog.png';
 import restingDog from '@/assets/resting-dog.png';
+import { useSceneEntrances } from '@/hooks/use-scene-entrances';
 
 const processCards = [
   { number: '01', label: 'SAY HELLO', title: <>FIRST, WE GET<br />TO KNOW YOU.</>, copy: 'Tell us about your dog, their personality, their routine, and the little things that make them special.', image: sittingDog, alt: 'A curious shaggy dog ready to say hello', tone: 'paper', note: 'hello, you.' },
@@ -19,6 +20,7 @@ function Star({ className }: { className: string }) {
 /** Motion only enhances the complete, readable SSR layout. */
 export function HowItWorks() {
   const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.journey-card');
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -69,6 +71,7 @@ export function HowItWorks() {
 
 export function PersonalCare() {
   const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.care-scene-dog, .care-scene-copy');
   useEffect(() => {
     const section = sectionRef.current;
     if (!section || !('IntersectionObserver' in window)) return;
@@ -81,11 +84,27 @@ export function PersonalCare() {
   return <section id="care" className="care-scene" ref={sectionRef} aria-labelledby="care-scene-title">
     <svg className="care-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg>
     <div className="care-scene-topline"><span>EVERY PERSONALITY WELCOME</span><span>04 / CARE, THEIR WAY</span></div>
-    <div className="care-cream care-cream-left" aria-hidden="true" /><div className="care-cream care-cream-right" aria-hidden="true" />
+    <div className="care-blob care-blob-left" aria-hidden="true" /><div className="care-blob care-blob-right" aria-hidden="true" />
     <div className="care-scene-title"><span className="eyebrow">THE LITTLE THINGS. THE BIG LOVE.</span><h2 id="care-scene-title">THE CARE YOUR<br />PET DESERVES!</h2><Heart className="care-scene-heart" aria-hidden="true" /></div>
     <div className="care-clouds" aria-hidden="true"><i /><i /><i /><i /><i /></div>
     <div className="care-scene-details"><div className="care-scene-dog"><div className="care-scene-blue" aria-hidden="true" /><img src={sittingDog} width={1024} height={1024} loading="lazy" alt="A gentle shaggy dog with a curious head tilt" /><span className="handwritten">their world.<br />their pace.</span><Star className="care-scene-star" /></div>
       <div className="care-scene-copy"><span className="eyebrow">SMALL DETAILS. VERY GOOD CARE.</span><p>The eager explorer. The gentle homebody. The dog who needs a little time to warm up. Every personality is different, and so is every routine.</p><p>Getting to know what makes your dog comfortable is where good care begins. Their favorite paths, familiar comforts, and little quirks all matter.</p><a className="text-link" href="#contact">LET’S GET TO KNOW YOUR DOG <ArrowUpRight /></a></div>
+    </div>
+  </section>;
+}
+
+/** An honest invitation — real stories are collected over time, never invented. */
+export function CustomerStories() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.stories-piece');
+  return <section id="stories" className="stories-scene" ref={sectionRef} aria-labelledby="stories-title">
+    <svg className="stories-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg>
+    <div className="stories-stage">
+      <div className="stories-shape" aria-hidden="true" />
+      <div className="stories-topline stories-piece"><span>GOOD DAYS, TOLD BY THEIR PEOPLE</span><span>05 / STORIES</span></div>
+      <div className="stories-heading stories-piece"><span className="eyebrow">STORIES FROM THE PACK</span><h2 id="stories-title">GOOD DAYS,<br />GREAT STORIES.</h2><Star className="stories-star" /><span className="handwritten">yours could be<br />the first.</span></div>
+      <div className="stories-copy stories-piece"><p>Every dog we meet leaves with a story worth telling — a new favorite path, a happy hello, a very good nap in a sunbeam.</p><p>We’re just getting started, so we’re collecting these little tales as we go. Your good dog’s day could be the first one we share.</p><a className="text-link" href="#contact">SHARE YOUR GOOD DOG’S DAY <ArrowUpRight /></a></div>
+      <div className="stories-paws stories-piece" aria-hidden="true"><PawPrint /><PawPrint /><PawPrint /></div>
     </div>
   </section>;
 }

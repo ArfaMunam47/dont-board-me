@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import runningDog from '@/assets/running-dog.png';
 import sittingDog from '@/assets/sitting-dog.png';
 import restingDog from '@/assets/resting-dog.png';
+import { useSceneEntrances } from '@/hooks/use-scene-entrances';
 
 export function Doodle({ className = '' }: { className?: string }) {
   return <svg className={className} viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="m30 3 4 20 17-11-12 17 19 4-20 4 9 17-16-13-7 17-1-19-19 7 14-15-16-7 20-1-5-18 13 15Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /></svg>;
@@ -35,6 +36,7 @@ const serviceSlides = [
 
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.service-slide');
   const [active, setActive] = useState(0);
   const [enhanced, setEnhanced] = useState(false);
   useEffect(() => {
@@ -148,8 +150,8 @@ export function ContactSection() {
     const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }));
     const link = document.createElement('a'); link.href = url; link.download = 'dont-board-me-enquiry.txt'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
-  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><div className="section-inner contact-layout">
-    <Reveal className="contact-copy"><span className="eyebrow">05 / SAY HELLO</span><h2 id="contact-title" className="editorial-title">TELL US ABOUT<br />YOUR GOOD DOG.</h2><p>A favorite route? A familiar routine? A little extra company? It starts with getting to know your dog.</p><PawPrint className="contact-paw" aria-hidden="true" /><span className="handwritten">we’re all ears.</span></Reveal>
+  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><svg className="contact-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg><div className="section-inner contact-layout">
+    <Reveal className="contact-copy"><span className="eyebrow">06 / SAY HELLO</span><h2 id="contact-title" className="editorial-title">TELL US ABOUT<br />YOUR GOOD DOG.</h2><p>A favorite route? A familiar routine? A little extra company? It starts with getting to know your dog.</p><PawPrint className="contact-paw" aria-hidden="true" /><span className="handwritten">we’re all ears.</span></Reveal>
     <form className="contact-form" noValidate onSubmit={submit} aria-describedby="delivery-note">
       <div className="form-intro"><PawPrint className="form-intro-paw" aria-hidden="true" /><span className="form-intro-label">LET’S GET TO KNOW YOUR PUP</span><p className="form-intro-copy">A few little details to help us find the right fit.</p></div>
       <div className="form-row">{(['name', 'email'] as const).map((key) => <div className="form-field" key={key}><label htmlFor={`contact-${key}`}>{key === 'name' ? 'Your name' : 'Email address'} <span aria-hidden="true">*</span></label><Input id={`contact-${key}`} type={key === 'email' ? 'email' : 'text'} autoComplete={key} required maxLength={key === 'email' ? 254 : 100} placeholder={key === 'email' ? 'hello@example.com' : 'Your name'} value={fields[key]} onChange={(event) => update(key, event.target.value)} aria-invalid={Boolean(errors[key])} aria-describedby={errors[key] ? `error-${key}` : undefined} />{errors[key] && <p className="field-error" id={`error-${key}`}>{errors[key]}</p>}</div>)}</div>
