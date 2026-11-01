@@ -71,6 +71,7 @@ export function HowItWorks() {
 
 export function PersonalCare() {
   const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.care-scene-dog, .care-scene-copy');
   useEffect(() => {
     const section = sectionRef.current;
     if (!section || !('IntersectionObserver' in window)) return;
@@ -83,7 +84,7 @@ export function PersonalCare() {
   return <section id="care" className="care-scene" ref={sectionRef} aria-labelledby="care-scene-title">
     <svg className="care-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg>
     <div className="care-scene-topline"><span>EVERY PERSONALITY WELCOME</span><span>04 / CARE, THEIR WAY</span></div>
-    <div className="care-cream care-cream-left" aria-hidden="true" /><div className="care-cream care-cream-right" aria-hidden="true" />
+    <div className="care-blob care-blob-left" aria-hidden="true" /><div className="care-blob care-blob-right" aria-hidden="true" />
     <div className="care-scene-title"><span className="eyebrow">THE LITTLE THINGS. THE BIG LOVE.</span><h2 id="care-scene-title">THE CARE YOUR<br />PET DESERVES!</h2><Heart className="care-scene-heart" aria-hidden="true" /></div>
     <div className="care-clouds" aria-hidden="true"><i /><i /><i /><i /><i /></div>
     <div className="care-scene-details"><div className="care-scene-dog"><div className="care-scene-blue" aria-hidden="true" /><img src={sittingDog} width={1024} height={1024} loading="lazy" alt="A gentle shaggy dog with a curious head tilt" /><span className="handwritten">their world.<br />their pace.</span><Star className="care-scene-star" /></div>
