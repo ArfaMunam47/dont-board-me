@@ -92,3 +92,19 @@ export function PersonalCare() {
     </div>
   </section>;
 }
+
+/** An honest invitation — real stories are collected over time, never invented. */
+export function CustomerStories() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useSceneEntrances(sectionRef, '.stories-piece');
+  return <section id="stories" className="stories-scene" ref={sectionRef} aria-labelledby="stories-title">
+    <svg className="stories-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C180 105 300 15 480 45S760 115 980 48 1260 0 1440 48V100H0Z" fill="currentColor" /></svg>
+    <div className="stories-stage">
+      <div className="stories-shape" aria-hidden="true" />
+      <div className="stories-topline stories-piece"><span>GOOD DAYS, TOLD BY THEIR PEOPLE</span><span>05 / STORIES</span></div>
+      <div className="stories-heading stories-piece"><span className="eyebrow">STORIES FROM THE PACK</span><h2 id="stories-title">GOOD DAYS,<br />GREAT STORIES.</h2><Star className="stories-star" /><span className="handwritten">yours could be<br />the first.</span></div>
+      <div className="stories-copy stories-piece"><p>Every dog we meet leaves with a story worth telling — a new favorite path, a happy hello, a very good nap in a sunbeam.</p><p>We’re just getting started, so we’re collecting these little tales as we go. Your good dog’s day could be the first one we share.</p><a className="text-link" href="#contact">SHARE YOUR GOOD DOG’S DAY <ArrowUpRight /></a></div>
+      <div className="stories-paws stories-piece" aria-hidden="true"><PawPrint /><PawPrint /><PawPrint /></div>
+    </div>
+  </section>;
+}
