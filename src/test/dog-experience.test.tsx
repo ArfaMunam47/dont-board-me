@@ -2,6 +2,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Services, ContactSection, CompleteFooter } from '@/components/dog-sections';
 import { DogHomepage } from '@/components/dog-homepage';
+import { CustomerStories } from '@/components/dog-process-scenes';
 
 afterEach(cleanup);
 beforeEach(() => {
@@ -59,5 +60,16 @@ describe('Accessible homepage navigation', () => {
     fireEvent.keyDown(link, { key: 'Escape' });
     expect(screen.getByRole('button', { name: 'Open menu' })).toHaveFocus();
     expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute('aria-expanded', 'false');
+  });
+});
+
+describe('Customer stories scene', () => {
+  it('invites real stories instead of showing fabricated testimonials', () => {
+    render(<CustomerStories />);
+    expect(screen.getByRole('heading', { name: /good days/i })).toBeInTheDocument();
+    const share = screen.getByRole('link', { name: /share your good dog/i });
+    expect(share).toHaveAttribute('href', '#contact');
+    expect(document.querySelectorAll('blockquote')).toHaveLength(0);
+    expect(screen.queryByText(/★★|five stars|rated/i)).not.toBeInTheDocument();
   });
 });

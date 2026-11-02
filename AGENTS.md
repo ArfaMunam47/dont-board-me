@@ -17,3 +17,4 @@
 - Scroll reveals progressively enhance visible SSR content with IntersectionObserver and bypass hidden states for reduced motion, so the page remains readable without animation support.
 - Keep the process and following care scenes in `src/components/dog-process-scenes.tsx`; isolate their scroll choreography from preserved services/contact, using requestAnimationFrame CSS-property updates instead of per-scroll React state.
 - Services are readable stacked content before enhancement; enable sticky choreography only when width, height, and motion media queries match, and keep fragment destinations on the service articles so footer links and direct URLs work in every layout.
+- The customer-stories scene (`CustomerStories`) is an honest invitation only: it never renders fabricated testimonials, ratings, or customer identities, and links real stories to the contact section.
