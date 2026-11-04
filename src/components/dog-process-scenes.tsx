@@ -4,13 +4,14 @@ import { Button } from '@/components/ui/button';
 import sittingDog from '@/assets/sitting-dog.png';
 import runningDog from '@/assets/running-dog.png';
 import restingDog from '@/assets/resting-dog.png';
+import playingDog from '@/assets/playing-dog.png';
 import { useSceneEntrances } from '@/hooks/use-scene-entrances';
 
 const processCards = [
   { number: '01', label: 'SAY HELLO', title: <>FIRST, WE GET<br />TO KNOW YOU.</>, copy: 'Tell us about your dog, their personality, their routine, and the little things that make them special.', image: sittingDog, alt: 'A curious shaggy dog ready to say hello', tone: 'paper', note: 'hello, you.' },
   { number: '02', label: 'FIND YOUR FIT', title: <>LET’S FIND<br />THEIR THING.</>, copy: 'Choose the walking or visiting routine that makes the most sense for your dog’s day.', image: runningDog, alt: 'A happy dog exploring with a trailing red leash', tone: 'rose', note: 'their kind of day.' },
-  { number: '03', label: 'THE LITTLE THINGS', title: <>THEIR WORLD.<br />THEIR PACE.</>, copy: 'Favorite paths, familiar comforts, and little quirks. Good care starts with understanding them.', image: restingDog, alt: 'A relaxed dog stretching its paws at home', tone: 'blue', note: 'just like home.' },
-  { number: '04', label: 'GOOD DAYS BEGIN', title: <>ADVENTURES<br />AWAIT.</>, copy: 'Make room for more sniffing, exploring, companionship, and very happy tails.', image: runningDog, alt: 'A joyful dog running toward its next adventure', tone: 'pink', note: 'off we go!' },
+  { number: '03', label: 'THE LITTLE THINGS', title: <>THEIR WORLD.<br />THEIR WAY.</>, copy: 'Every dog is different. We make room for their personality, favorite activities, and little habits.', image: restingDog, alt: 'A relaxed dog stretching its paws at home', tone: 'blue', note: 'just like home.' },
+  { number: '04', label: 'GOOD DAYS BEGIN', title: <>ADVENTURES<br />AWAIT.</>, copy: 'More exploring, more companionship, and more very good days.', image: playingDog, alt: 'A joyful dog leaping mid-air with its red leash trailing behind', tone: 'pink', note: 'off we go!' },
 ];
 
 function Star({ className }: { className: string }) {
@@ -39,7 +40,7 @@ export function HowItWorks() {
         card.style.setProperty('--card-lift', `${(1 - eased) * (window.innerHeight + 420)}px`);
         card.style.setProperty('--card-turn', `${(1 - eased) * (index % 2 ? 13 : -13)}deg`);
       });
-      section.style.setProperty('--heading-fade', `${1 - Math.min(0.94, progress * 1.45)}`);
+      section.style.setProperty('--heading-fade', `${1 - Math.min(0.8, progress * 1.45)}`);
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
