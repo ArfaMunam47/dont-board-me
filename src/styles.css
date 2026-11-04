@@ -561,10 +561,10 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 .journey-heading .handwritten { display: inline-block; font-size: 23px; margin-top: 20px; transform: rotate(-6deg); }
 .journey-star { width: 42px; height: 42px; position: absolute; top: -20px; right: 15%; transform: rotate(12deg); }
 .journey-deck { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto 70px; padding: 0; list-style: none; position: relative; perspective: 1200px; }
-.journey-card { --rest-turn: -5deg; background: var(--paper); flex: 0 0 27%; max-width: 330px; margin-right: -2%; padding: 22px 20px 12px; border: 1px solid var(--paper); border-radius: 3px; box-shadow: var(--journey-shadow); transform: rotate(var(--rest-turn)); position: relative; transform-origin: 50% 80%; }
-.journey-card:nth-child(2) { --rest-turn: 3deg; margin-top: 28px; }
-.journey-card:nth-child(3) { --rest-turn: -4deg; margin-top: 61px; }
-.journey-card:nth-child(4) { --rest-turn: 5deg; margin-top: 90px; margin-right: 0; }
+.journey-card { --rest-turn: -5deg; --enter-x: -70px; --enter-y: 30px; --enter-turn: -9deg; z-index: 4; background: var(--paper); flex: 0 0 25%; max-width: 312px; margin-right: -14px; padding: 22px 20px 12px; border: 1px solid var(--paper); border-radius: 3px; box-shadow: var(--journey-shadow); transform: rotate(var(--rest-turn)); position: relative; transform-origin: 50% 80%; }
+.journey-card:nth-child(2) { --rest-turn: 3deg; --enter-x: 90px; --enter-y: 58px; --enter-turn: 10deg; z-index: 3; margin-top: 46px; }
+.journey-card:nth-child(3) { --rest-turn: -3.5deg; --enter-x: -100px; --enter-y: 44px; --enter-turn: -8deg; z-index: 2; margin-top: 14px; }
+.journey-card:nth-child(4) { --rest-turn: 5deg; --enter-x: 80px; --enter-y: 36px; --enter-turn: 11deg; z-index: 1; margin-top: 62px; margin-right: 0; }
 .journey-card-top { display: flex; align-items: center; justify-content: space-between; font-size: 8px; font-weight: 700; gap: 10px; }
 .journey-card-top svg { width: 15px; height: 15px; }
 .journey-card h3 { font-size: 33px; line-height: .95; margin-top: 18px; font-weight: 800; }
@@ -579,6 +579,9 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 .journey-paper .journey-art img { object-fit: contain; width: 85%; margin-left: 8%; }
 .journey-art .handwritten { position: absolute; bottom: 0; right: 14px; font-size: 20px; transform: rotate(-5deg); }
 .journey-card:hover .journey-art img { transform: translateY(-5px) rotate(-2deg); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+ .journey-section:not(.journey-animated) .journey-card:hover { transform: translateY(-8px) rotate(calc(var(--rest-turn) * .35)); transition: transform .35s ease; }
+}
 .journey-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 25px; font-size: 9px; font-weight: 600; }
 @media (min-width: 901px) and (min-height: 820px) and (prefers-reduced-motion: no-preference) {
  .journey-section.journey-animated { height: 340vh; }
@@ -707,13 +710,16 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 @media (prefers-reduced-motion: no-preference) {
  .scene-motion-ready { opacity: 0; translate: 0 46px; }
  .scene-entered { opacity: 1; translate: 0 0; transition: opacity .8s cubic-bezier(.22,1,.36,1), translate .8s cubic-bezier(.22,1,.36,1); }
+ /* Cards arrive like illustrated posters being placed on the canvas: each from its own direction and turn. */
+ .journey-section:not(.journey-animated) .journey-card { translate: none; transition: transform .95s cubic-bezier(.22,1,.36,1), opacity .7s ease; }
+ .journey-section:not(.journey-animated) .journey-card.scene-motion-ready { opacity: 0; transform: translate(var(--enter-x, 0px), var(--enter-y, 90px)) rotate(calc(var(--rest-turn) + var(--enter-turn, -6deg))); }
  /* Scroll-driven stages choreograph themselves; entrances never fight them. */
  .journey-animated .journey-card { opacity: 1; translate: none; }
  .services-enhanced .service-slide { translate: none; }
  .services-enhanced .service-slide.scene-entered { transition: opacity .55s ease; }
- .journey-section:not(.journey-animated) .journey-card:nth-child(2).scene-entered { transition-delay: .08s; }
- .journey-section:not(.journey-animated) .journey-card:nth-child(3).scene-entered { transition-delay: .16s; }
- .journey-section:not(.journey-animated) .journey-card:nth-child(4).scene-entered { transition-delay: .24s; }
+ .journey-section:not(.journey-animated) .journey-card:nth-child(2).scene-entered { transition-delay: .12s; }
+ .journey-section:not(.journey-animated) .journey-card:nth-child(3).scene-entered { transition-delay: .24s; }
+ .journey-section:not(.journey-animated) .journey-card:nth-child(4).scene-entered { transition-delay: .36s; }
 }
 
 /* ============= New scenes at smaller sizes ============= */
