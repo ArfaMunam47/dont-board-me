@@ -712,7 +712,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .scene-entered { opacity: 1; translate: 0 0; transition: opacity .8s cubic-bezier(.22,1,.36,1), translate .8s cubic-bezier(.22,1,.36,1); }
  /* Cards arrive like illustrated posters being placed on the canvas: each from its own direction and turn. */
  .journey-section:not(.journey-animated) .journey-card { translate: none; transition: transform .95s cubic-bezier(.22,1,.36,1), opacity .7s ease; }
- .journey-section:not(.journey-animated) .journey-card.scene-motion-ready { opacity: 0; transform: translate(var(--enter-x, 0px), var(--enter-y, 90px)) rotate(calc(var(--rest-turn) + var(--enter-turn, -6deg))); }
+ .journey-section:not(.journey-animated) .journey-card.scene-motion-ready:not(.scene-entered) { opacity: 0; transform: translate(var(--enter-x, 0px), var(--enter-y, 90px)) rotate(calc(var(--rest-turn) + var(--enter-turn, -6deg))); }
  /* Scroll-driven stages choreograph themselves; entrances never fight them. */
  .journey-animated .journey-card { opacity: 1; translate: none; }
  .services-enhanced .service-slide { translate: none; }

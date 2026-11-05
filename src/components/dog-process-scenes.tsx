@@ -40,7 +40,7 @@ export function HowItWorks() {
         card.style.setProperty('--card-lift', `${(1 - eased) * (window.innerHeight + 420)}px`);
         card.style.setProperty('--card-turn', `${(1 - eased) * (index % 2 ? 13 : -13)}deg`);
       });
-      section.style.setProperty('--heading-fade', `${1 - Math.min(0.8, progress * 1.45)}`);
+      section.style.setProperty('--heading-fade', `${1 - Math.min(0.94, progress * 2.2)}`);
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
