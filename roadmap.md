@@ -29,3 +29,9 @@
 - [x] Recompose the following care scene in cream and blue and add an honest customer-stories scene.
 - [x] Preserve all services, add coordinated small-screen entrances, and make the questions CTA blue.
 - [x] Verify real scrolling, scene transitions, contact, reduced motion, and small screens.
+
+# Phase 1 — How It Works editorial cards
+- [x] Rebalance the four-card composition with deliberate rotations, stagger, and safe layering (no covered text).
+- [x] Give card 04 its own leaping-dog illustration and align card 03 wording with the brief.
+- [x] Add directional card entrances, hover lift, faster heading fade during the scroll choreography.
+- [x] Verify resting, animated, mobile-entrance, hover, overflow, reduced motion, and tests.
