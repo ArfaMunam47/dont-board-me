@@ -511,6 +511,15 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
   .service-slide:nth-child(3).is-after .slide-dog { transform: scale(.6); }
   .service-slide:nth-child(3).is-before .slide-dog { transform: scale(1.15); }
 }
+.services-enhanced .service-slide { opacity: var(--slide-opacity, 0); transition: none; }
+.services-enhanced .service-slide .slide-shape { transform: translateY(calc((1 - var(--slide-enter, 1)) * 40px - var(--slide-exit, 0) * 26px)) scale(calc(.82 + var(--slide-enter, 1) * .18 - var(--slide-exit, 0) * .05)); opacity: var(--slide-opacity, 0); transition: none; }
+.services-enhanced .service-slide .slide-dog { transform: translate3d(calc((1 - var(--slide-enter, 1)) * var(--dog-enter-x, 28px) + var(--slide-exit, 0) * var(--dog-exit-x, -24px)), calc((1 - var(--slide-enter, 1)) * var(--dog-enter-y, 24px) + var(--slide-exit, 0) * var(--dog-exit-y, -20px)), 0) scale(calc(.92 + var(--slide-enter, 1) * .08 - var(--slide-exit, 0) * .04)); opacity: var(--slide-opacity, 0); transition: none; }
+.services-enhanced .service-slide:nth-child(2) .slide-dog { --dog-enter-x: 0px; --dog-enter-y: 38px; --dog-exit-x: 0px; --dog-exit-y: -28px; }
+.services-enhanced .service-slide:nth-child(3) .slide-dog { --dog-enter-x: -30px; --dog-enter-y: 18px; }
+.services-enhanced .service-slide .slide-copy h3 { transform: translateY(calc((1 - var(--slide-enter, 1)) * 34px - var(--slide-exit, 0) * 26px)); opacity: var(--slide-opacity, 0); transition: none; }
+.services-enhanced .service-slide .slide-copy p { transform: translateY(calc((1 - var(--slide-enter, 1)) * 28px - var(--slide-exit, 0) * 18px)); opacity: var(--slide-opacity, 0); transition: none; }
+.services-enhanced .service-slide .slide-copy .editorial-link { transform: translateY(calc((1 - var(--slide-enter, 1)) * 22px - var(--slide-exit, 0) * 12px)); opacity: var(--slide-opacity, 0); transition: none; }
+.services-enhanced .service-slide :is(.slide-number, .slide-note, .slide-paw, .slide-path) { opacity: var(--slide-opacity, 0); transition: none; }
 .services-markers { position: absolute; bottom: 30px; left: 6%; display: flex; gap: 26px; z-index: 5; }
 .marker { font-size: 11px; letter-spacing: 0; font-weight: 600; color: var(--primary); background: none; border: 0; border-radius: 0; border-bottom: 2px solid transparent; padding: 6px 0; cursor: pointer; transition: color .3s ease, border-color .3s ease; }
 .marker.is-active { color: var(--primary); border-color: var(--primary); }
@@ -550,12 +559,12 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
   .services-stage .slide-shape, .services-stage .slide-dog { translate: none; }
 }
 
-/* Illustrated paper choreography: a calm cream scene between the pink services stage and the deeper-pink care scene. */
-.journey-section { position: relative; background: color-mix(in oklab, var(--pink-deep) 30%, var(--secondary)); color: var(--primary); }
+/* Illustrated paper choreography with a scroll-blended release into the cream-and-blue care scene. */
+.journey-section { position: relative; background: color-mix(in oklab, var(--pink-deep) calc((1 - var(--scene-release, 0)) * 30%), var(--background)); color: var(--primary); }
 .journey-wave { display: block; width: 100%; height: 70px; color: color-mix(in oklab, var(--pink-deep) 20%, var(--secondary)); margin-bottom: -1px; transform: scaleY(-1); }
 .journey-stage { position: relative; min-height: 860px; padding: 38px 5% 35px; overflow: hidden; }
 .journey-topline,.care-scene-topline { display: flex; justify-content: space-between; gap: 20px; font-size: 9px; font-weight: 600; position: relative; z-index: 2; }
-.journey-orbit { position: absolute; width: 105%; height: 90%; top: 5%; left: -3%; border-radius: 50%; background: var(--accent); opacity: .3; transform: rotate(-15deg); }
+.journey-orbit { position: absolute; width: 105%; height: 90%; top: 5%; left: -3%; border-radius: 50%; background: var(--accent); opacity: calc(.3 * (1 - var(--scene-release, 0))); transform: rotate(-15deg) scale(calc(1 + var(--scene-release, 0) * .12)); }
 .journey-heading { position: relative; text-align: center; margin: 80px auto 55px; }
 .journey-heading h2 { font-size: 100px; line-height: 1; font-weight: 800; }
 .journey-heading .handwritten { display: inline-block; font-size: 23px; margin-top: 20px; transform: rotate(-6deg); }
@@ -588,7 +597,7 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
  .journey-animated .journey-stage { position: sticky; top: 0; height: 100vh; min-height: 650px; padding-top: 30px; }
  .journey-animated .journey-heading { position: absolute; left: 0; right: 0; top: 39%; margin: 0; opacity: var(--heading-fade,1); }
  .journey-animated .journey-deck { position: absolute; left: 5%; top: calc(50% - 240px); width: 90%; margin: 0; }
- .journey-animated .journey-card { transform: translate3d(0,var(--card-lift,0px),0) rotate(calc(var(--rest-turn) + var(--card-turn,0deg))); will-change: transform; }
+ .journey-animated .journey-card { opacity: calc(1 - var(--card-exit, 0) * .72); transform: translate3d(0,calc(var(--card-lift,0px) - var(--card-exit,0) * 54px),0) rotate(calc(var(--rest-turn) + var(--card-turn,0deg))) scale(calc(1 - var(--card-exit,0) * .035)); will-change: transform, opacity; }
  .journey-animated .journey-bottom { position: absolute; left: 5%; right: 5%; bottom: 30px; }
 }
  .care-scene { position: relative; background: var(--background); color: var(--primary); overflow: hidden; }
@@ -618,15 +627,13 @@ h1,h2,h3,.wordmark { font-family: var(--font-display); font-weight: 700; letter-
 .care-scene-copy .eyebrow { font-size: 11px; }
 .care-scene-copy p { color: var(--foreground); font-size: 14px; line-height: 1.85; margin-top: 24px; max-width: 365px; }
 .care-scene-copy .text-link { margin-top: 27px; }
-@media (prefers-reduced-motion: no-preference) {
- .care-scene-entered .care-scene-title h2 { animation: care-heading-arrive .9s cubic-bezier(.22,1,.36,1) both; }
- .care-scene-entered .care-blob { animation: care-shape-arrive 1.2s cubic-bezier(.22,1,.36,1) both; }
- .care-scene-entered .care-clouds i { animation: care-cloud-arrive 1.2s cubic-bezier(.22,1,.36,1) both; }
- .care-scene-entered .care-clouds i:nth-child(3) { animation-delay: .15s; }
-}
-@keyframes care-heading-arrive { from { opacity: .3; translate: 0 45px; } to { opacity: 1; translate: 0 0; } }
-@keyframes care-shape-arrive { from { scale: .65; } to { scale: 1; } }
-@keyframes care-cloud-arrive { from { translate: 0 65px; } to { translate: 0 0; } }
+.care-scene-title h2 { opacity: var(--care-reveal, 1); translate: 0 calc((1 - var(--care-reveal, 1)) * 42px); will-change: opacity, translate; }
+.care-blob { scale: calc(.72 + var(--care-reveal, 1) * .28); }
+.care-clouds i { opacity: var(--care-cloud-reveal, 1); translate: 0 calc((1 - var(--care-cloud-reveal, 1)) * 72px); will-change: opacity, translate; }
+.care-scene-blue { scale: calc(.78 + var(--care-reveal, 1) * .22); }
+.care-scene-dog img { opacity: var(--care-reveal, 1); translate: 0 calc((1 - var(--care-reveal, 1)) * 32px); will-change: opacity, translate; }
+.care-scene-dog .handwritten, .care-scene-star { opacity: var(--care-reveal, 1); }
+.care-scene-copy { opacity: var(--care-reveal, 1); translate: 0 calc((1 - var(--care-reveal, 1)) * 26px); will-change: opacity, translate; }
 @media (max-width: 1100px) and (min-width: 901px) {
  .journey-card { padding: 18px 16px 12px; } .journey-card h3 { font-size: 28px; } .journey-card p { min-height: 89px; } .journey-art { height: 150px; }
  .care-scene-title h2 { font-size: 96px; }
