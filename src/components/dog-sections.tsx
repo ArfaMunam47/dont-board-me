@@ -6,6 +6,9 @@ import { Textarea } from '@/components/ui/textarea';
 import runningDog from '@/assets/running-dog.png';
 import sittingDog from '@/assets/sitting-dog.png';
 import restingDog from '@/assets/resting-dog.png';
+import serviceWalkDog from '@/assets/service-walk-dog.png';
+import serviceFlexibleDogs from '@/assets/service-flexible-dogs.png';
+import ctaCuriousDog from '@/assets/cta-curious-dog.png';
 import { useSceneEntrances } from '@/hooks/use-scene-entrances';
 
 export function Doodle({ className = '' }: { className?: string }) {
@@ -29,9 +32,9 @@ export function Reveal({ children, className = '' }: { children: ReactNode; clas
 }
 
 const serviceSlides = [
-  { number: '01', id: 'dog-walks', name: 'DOG WALKS', title: ['BIG WALKS.', 'HAPPY PAWS.'], copy: 'Give your dog time to explore, sniff, stretch their legs, and discover something new.', link: 'EXPLORE DOG WALKS', img: runningDog, width: 1536, height: 1024, alt: 'A joyful dog running with its red leash curling through the air', shape: 'blue', note: 'follow their nose!' },
+  { number: '01', id: 'dog-walks', name: 'DOG WALKS', title: ['BIG WALKS.', 'HAPPY PAWS.'], copy: 'Give your dog time to explore, sniff, stretch their legs, and discover something new.', link: 'EXPLORE DOG WALKS', img: serviceWalkDog, width: 1024, height: 1024, alt: 'A shaggy dog enjoying a brisk walk on its red leash', shape: 'blue', note: 'follow their nose!' },
   { number: '02', id: 'pet-visits', name: 'PET VISITS', title: ['LITTLE VISITS.', 'LOTS OF LOVE.'], copy: 'Friendly check-ins, attention, and care to help your dog feel comfortable while you’re away.', link: 'EXPLORE PET VISITS', img: restingDog, width: 1536, height: 1024, alt: 'A relaxed white dog stretching out its paws at home', shape: 'pink', note: 'their happy place.' },
-  { number: '03', id: 'both', name: 'A BIT OF BOTH', title: ['THE BEST', 'OF BOTH.'], copy: 'Looking for walks and friendly visits? Let’s find a routine that works for your dog’s day.', link: 'EXPLORE BOTH', img: sittingDog, width: 1024, height: 1024, alt: 'A shaggy white dog with a curious head tilt and a red leash', shape: 'cream', note: 'a bit of everything.' },
+  { number: '03', id: 'both', name: 'A BIT OF BOTH', title: ['THE BEST', 'OF BOTH.'], copy: 'Looking for walks and friendly visits? Let’s find a routine that works for your dog’s day.', link: 'EXPLORE BOTH', img: serviceFlexibleDogs, width: 1024, height: 1024, alt: 'Two shaggy dogs together, one sitting and one resting beside it', shape: 'cream', note: 'a bit of everything.' },
 ];
 
 export function Services() {
@@ -43,18 +46,31 @@ export function Services() {
     const node = sectionRef.current;
     if (!node) return;
     const media = window.matchMedia('(min-width: 901px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)');
+    const slides = Array.from(node.querySelectorAll<HTMLElement>('.service-slide'));
     let raf = 0;
     const update = () => {
       raf = 0;
       setEnhanced(media.matches);
-      if (!media.matches) return;
+      if (!media.matches) {
+        slides.forEach(slide => slide.removeAttribute('style'));
+        setActive(0);
+        return;
+      }
       const total = node.offsetHeight - window.innerHeight;
       if (total <= 0) return;
       const progress = Math.min(1, Math.max(0, -node.getBoundingClientRect().top / total));
+      const rawProgress = progress * serviceSlides.length;
+      slides.forEach((slide, index) => {
+        const phase = rawProgress - index;
+        const enter = index === 0 ? 1 : Math.min(1, Math.max(0, (phase + 0.32) / 0.32));
+        const exit = index === serviceSlides.length - 1 ? 0 : Math.min(1, Math.max(0, (phase - 0.72) / 0.28));
+        const visibility = Math.min(enter, 1 - exit);
+        slide.style.setProperty('--slide-enter', enter.toFixed(3));
+        slide.style.setProperty('--slide-exit', exit.toFixed(3));
+        slide.style.setProperty('--slide-opacity', visibility.toFixed(3));
+      });
       setActive((previous) => {
-        const bias = 0.06;
-        const raw = progress * serviceSlides.length;
-        let next = Math.floor(raw + (raw > previous + 1 ? -bias : raw < previous ? bias : 0));
+        let next = Math.floor(rawProgress + 0.15);
         next = Math.min(serviceSlides.length - 1, Math.max(0, next));
         return next === previous ? previous : next;
       });
@@ -120,7 +136,7 @@ export function Services() {
 }
 
 export function FinalCallToAction() {
-  return <section className="final-cta" aria-labelledby="cta-title"><Reveal className="cta-composition"><div className="cta-shape" /><div className="cta-copy"><span className="eyebrow">GOOD DAYS ARE JUST A HELLO AWAY</span><h2 id="cta-title" className="editorial-title">READY FOR MORE<br />TAIL WAGS?</h2><p>Let’s make your dog’s next day a really good one.</p><Button asChild className="club-button final-button"><a href="#contact">LET’S TALK ABOUT YOUR DOG <ArrowUpRight /></a></Button></div><img src={runningDog} width={1536} height={1024} loading="lazy" alt="A happy dog leaping toward its next adventure" className="cta-dog" /><Doodle className="cta-star" /></Reveal></section>;
+  return <section className="final-cta" aria-labelledby="cta-title"><Reveal className="cta-composition"><div className="cta-shape" /><div className="cta-copy"><span className="eyebrow">GOOD DAYS ARE JUST A HELLO AWAY</span><h2 id="cta-title" className="editorial-title">READY FOR MORE<br />TAIL WAGS?</h2><p>Let’s make your dog’s next day a really good one.</p><Button asChild className="club-button final-button"><a href="#contact">LET’S TALK ABOUT YOUR DOG <ArrowUpRight /></a></Button></div><img src={ctaCuriousDog} width={1024} height={1024} loading="lazy" alt="A curious dog glancing back over its shoulder" className="cta-dog" /><Doodle className="cta-star" /></Reveal></section>;
 }
 
 type ContactFields = { name: string; email: string; dog: string; care: string; message: string };

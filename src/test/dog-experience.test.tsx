@@ -2,7 +2,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Services, ContactSection, CompleteFooter } from '@/components/dog-sections';
 import { DogHomepage } from '@/components/dog-homepage';
-import { CustomerStories } from '@/components/dog-process-scenes';
+import { CustomerStories, HowItWorks, PersonalCare } from '@/components/dog-process-scenes';
 
 afterEach(cleanup);
 beforeEach(() => {
@@ -71,5 +71,15 @@ describe('Customer stories scene', () => {
     expect(share).toHaveAttribute('href', '#contact');
     expect(document.querySelectorAll('blockquote')).toHaveLength(0);
     expect(screen.queryByText(/★★|five stars|rated/i)).not.toBeInTheDocument();
+  });
+});
+
+describe('Illustrated scene variety', () => {
+  it('uses a distinct dog illustration for every service, process card, care scene, and final call to action', () => {
+    render(<><Services /><HowItWorks /><PersonalCare /></>);
+    const art = Array.from(document.querySelectorAll('.slide-dog, .journey-art img, .care-scene-dog img'));
+    const sources = art.map(image => image.getAttribute('src'));
+    expect(sources).toHaveLength(8);
+    expect(new Set(sources).size).toBe(sources.length);
   });
 });
